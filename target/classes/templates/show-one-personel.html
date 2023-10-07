@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Personnel Profile</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #4CAF50;
+            color: #333;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .delete-button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: #ff3333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/personel/showAll">Personel</a>
+        <a href="/courses/showAll">Courses</a>
+        <a href="/thesis/showAll">Theses</a>
+        <a href="/comments/showAll">Comments</a>
+        <a href="/student/showAll">Students</a>
+    </div>
+
+   <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <h2>Vadības informācija</h2>
+            <div>
+                <label>ID:</label>
+                <span th:text="${personel.personId}"></span>
+            </div>
+            <div>
+                <label>Vārds:</label>
+                <span th:text="${personel.personName}"></span>
+            </div>
+            <div>
+                <label>Uzvārds:</label>
+                <span th:text="${personel.surname}"></span>
+            </div>
+            <div>
+                <label>Grāds:</label>
+                <span th:text="${personel.degree}"></span>
+            </div>
+
+            <div class="comments-container" th:if="${not #lists.isEmpty(personel.comments)}">
+                <h2>Komentāri</h2>
+                <table>
+                    <tr>
+                        <th>Komentāra ID</th>
+                        <th>Komentārs</th>
+                    </tr>
+                    <tr th:each="comment : ${personel.comments}">
+                        <td th:text="${comment.comment_id}"></td>
+                        <td th:text="${comment.text}"></td>
+                    </tr>
+                </table>
+                
+            </div>
+
+            <div class="message" th:if="${#lists.isEmpty(personel.comments)}">
+                Nav pieejami komentari!
+            </div>
+
+
+            <div class="thesis-container" th:if="${not #lists.isEmpty(personel.thesis)}">
+                <h2>Gala Darbi</h2>
+                <table>
+                    <tr>
+                        <th>Gala darba ID</th>
+                    </tr>
+                    <tr th:each="thesis : ${personel.thesis}">
+                        <td th:text="${thesis.thesis_id}"></td>
+                    </tr>
+                </table>
+                
+            </div>
+
+            <div class="message" th:if="${#lists.isEmpty(personel.thesis)}">
+                Nav pieejami darbi!
+            </div>
+
+            <form th:action="@{/personel/delete/{id}(id=${personel.personId})}" method="GET">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+            
+        </div>
+    </div>
+
+</body>
+</html>

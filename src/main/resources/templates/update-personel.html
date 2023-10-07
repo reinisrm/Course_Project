@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course Project</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/personel/showAll">Personel</a>
+        <a href="/courses/showAll">Courses</a>
+        <a href="/thesis/showAll">Theses</a>
+        <a href="/comments/showAll">Comments</a>
+        <a href="/student/showAll">Students</a>
+
+    </div>
+
+   <!-- Main content -->
+   <div class="content">
+    <div class="form-container">
+        <h2>Update Personel</h2>
+
+        <form action="#" th:action="@{/personel/update/__${id}__}" th:object="${personel}" method="post">
+            <label for="personel_name">Name:</label>
+            <input type="text" id="personel_name" name="personel_name" th:field="*{personName}" required>
+            <span class="error-message" th:if="${#fields.hasErrors('personName')}" th:errors="*{personName}"></span>
+
+            <label for="personel_surname">Surname:</label>
+            <input type="text" id="personel_surname" name="personel_surname" th:field="*{surname}" required>
+            <span class="error-message" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+
+            <label for="personel_personalCode">Personal Code:</label>
+            <input type="text" id="personel_personalCode" name="personel_personalCode" th:field="*{personalCode}" required>
+            <span class="error-message" th:if="${#fields.hasErrors('personalCode')}" th:errors="*{personalCode}"></span>
+
+            <label for="personel_degree">Degree:</label>
+            <select id="personel_degree" name="personel_degree" th:field="*{degree}" required>
+                <option th:each="degree : ${degrees}"
+                        th:value="${degree}" th:text="${degree}"></option>
+            </select>
+            <span class="error-message" th:if="${#fields.hasErrors('degree')}" th:errors="*{degree}"></span>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+    
+    <script>
+ 
+
+    </script>
+    
+</body>
+</html>
