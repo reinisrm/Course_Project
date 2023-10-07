@@ -37,8 +37,8 @@ public class Application {
 
     @ManyToMany
     @JoinTable(name = "Application_recipients",
-    joinColumns = @JoinColumn(name = "id_personel"),
-    inverseJoinColumns = @JoinColumn(name = "applicationId"))
+    joinColumns = @JoinColumn(name = "applicationId"),
+    inverseJoinColumns = @JoinColumn(name = "id_personel"))
     private Collection<Academic_personel> recipients;
 
     public Application(String title, String text, Student author, Collection<Academic_personel> recipients) {
@@ -47,9 +47,11 @@ public class Application {
         setText(text);
         setAuthor(author);
         setRecipients(recipients);
-        
+
 
     }
+
+
 
 
 
