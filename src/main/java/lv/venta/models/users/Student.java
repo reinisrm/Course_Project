@@ -18,6 +18,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lv.venta.models.Application;
 import lv.venta.models.Course;
 import lv.venta.models.Thesis;
 
@@ -43,6 +44,7 @@ public class Student extends Person{
 	private boolean isDebt() {
 		return this.Debt;
 	}
+
 	@ManyToMany
 	@JoinTable(name = "student_debt_table",
 	joinColumns = @JoinColumn(name = "course_id"),
@@ -51,6 +53,9 @@ public class Student extends Person{
 	
 	@OneToMany(mappedBy = "student")
 	private Collection<Thesis> thesis;
+
+	@OneToMany(mappedBy = "author")
+	private Collection<Application> applications;
 
 
 	
@@ -74,8 +79,7 @@ public class Student extends Person{
 
 
 }
-	
-	//TODO izveidot REMOVE debt 
+
 
 	
 	

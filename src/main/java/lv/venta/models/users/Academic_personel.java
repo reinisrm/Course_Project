@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lv.venta.enums.Degree;
+import lv.venta.models.Application;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
 
@@ -31,10 +32,10 @@ public class Academic_personel extends Person{
 	
 	@ManyToMany(mappedBy = "reviewers")
 	private Collection<Thesis> ThesisForReview = new ArrayList<>();
-	// @Size(min = 12, max = 12)@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[0-9]{6}-[0-9]{5} ]+", message = "Neatbilstoss personas kods")
 
-	
-	
+	@ManyToMany(mappedBy = "recipients")
+	private Collection<Application> applications;
+
 	@OneToMany(mappedBy = "personel")
 	private Collection<Comments> comments;
 	
