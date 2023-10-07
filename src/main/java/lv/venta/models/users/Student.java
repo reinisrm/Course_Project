@@ -18,6 +18,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lv.venta.models.Application;
 import lv.venta.models.Course;
 import lv.venta.models.Thesis;
 
@@ -32,9 +33,6 @@ public class Student extends Person{
 	
 
 	@Column(name = "matriculaNo")
-	@NotNull
-	//@Size(min=8,max=20)
-	@Pattern(regexp = "[0-9]{8,20}")
 	private String matriculaNo;
 	
 	@Column(name = "isDebt")
@@ -43,6 +41,7 @@ public class Student extends Person{
 	private boolean isDebt() {
 		return this.Debt;
 	}
+
 	@ManyToMany
 	@JoinTable(name = "student_debt_table",
 	joinColumns = @JoinColumn(name = "course_id"),
@@ -52,14 +51,17 @@ public class Student extends Person{
 	@OneToMany(mappedBy = "student")
 	private Collection<Thesis> thesis;
 
+	@OneToMany(mappedBy = "author")
+	private Collection<Application> applications;
+
 
 	
 	public Student(
-
-		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String personName,
-		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
-		@Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstošs personas kods") @NotNull String personalCode,
-		User user, @NotNull @Pattern(regexp = "[0-9]{8,20}") String matriculaNo) {
+			String personName,
+		String surname,
+		String personalCode,
+		User user,
+			String matriculaNo) {
 	super(personName, surname, personalCode, user);
 	this.matriculaNo = matriculaNo;
 	}
@@ -74,8 +76,7 @@ public class Student extends Person{
 
 
 }
-	
-	//TODO izveidot REMOVE debt 
+
 
 	
 	
