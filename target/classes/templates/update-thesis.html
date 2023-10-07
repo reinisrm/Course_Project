@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course Project</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: #fff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #4CAF50;
+            color: #333;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+        }
+
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="/home">Home</a>
+        <a href="/personel/showAll">Personel</a>
+        <a href="/courses/showAll">Courses</a>
+        <a href="/thesis/showAll">Theses</a>
+        <a href="/comments/showAll">Comments</a>
+        <a href="/student/showAll">Students</a>
+    </div>
+     <div class="content">
+        <div class="container">
+            <form th:action="@{/thesis/update/{thesis_id}(thesis_id=${thesis.thesis_id})}" th:object="${thesis}" method="post">
+                <div>
+                    <label for="titleLv">Nosaukums latviski</label>
+                    <input type="text" id="titleLv" th:field="*{titleLv}" name="titleLv" required>
+                </div>
+
+                <div>
+                    <label for="titleEn">Nosaukums angliski</label>
+                    <input type="text" id="titleEn" th:field="*{titleEn}" name="titleEn" required>
+                </div>
+
+                <div>
+                    <label for="aim">Mērķis</label>
+                    <textarea id="aim" th:field="*{aim}" name="aim" required></textarea>
+                </div>
+
+                <div>
+                    <label for="tasks">Uzdevums</label>
+                    <textarea id="tasks" th:field="*{tasks}" name="tasks" required></textarea>
+                </div>
+                <div>
+                    <label for="statusFromSupervisor">Supervisor statuss</label>
+                    <select id="statusFromSupervisor" th:field="*{statusFromSupervisor}" name="statusFromSupervisor" required>
+                        <option value="True">True</option>
+                        <option value="False">False</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="status">Statuss</label>
+                    <select id="status" th:field="*{status}" name="status" required>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Accepted_with_conditions">Accepted_with_conditions</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="In_Review">In_Review</option>
+                        <option value="Submitted">Submitted</option>
+                    </select>
+                </div>
+
+
+                <button type="submit">Atjaunot tēzi</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
