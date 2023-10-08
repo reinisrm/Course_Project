@@ -2,8 +2,7 @@ package lv.venta.controllers;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,27 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import lv.venta.enums.Degree;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.User;
 import lv.venta.services.users.impl.AcademicPersonelCRUDService;
 import lv.venta.services.users.impl.UserCRUDService;
 
-@Slf4j
+
 @Controller
 public class AcademicPersonelController {
 	
-    public void log() {
-        log.debug("Debug message");
-        log.info("Informational message");
-        log.warn("Warning message");
-        log.error("Error message");
-    }
-    
-    public void callLogMethod() {
-        log();
-    }
 	
 	@Autowired
 	AcademicPersonelCRUDService personelService;
@@ -141,8 +129,7 @@ public class AcademicPersonelController {
 	
 	
 	@GetMapping("/personel/update/{id}")
-    public String updatePersonelById(@PathVariable("id") int id, org.springframework.ui.Model model) {
-        
+    public String updatePersonelById(@PathVariable("id") int id, org.springframework.ui.Model model) {   
 
 		try {
 			Academic_personel temp = personelService.findById(id);
@@ -162,6 +149,7 @@ public class AcademicPersonelController {
 	
 	@PostMapping("/personel/update/{id}")
 	public String updateDriverById2(@PathVariable int id, @Valid Academic_personel personel, BindingResult bindingResult) {
+		
 	    if (bindingResult.hasErrors()) {
 	        return "update-driver";
 	    }

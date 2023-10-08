@@ -12,28 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import lv.venta.models.Course;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 import lv.venta.services.impl.CourseCRUDService;
 import lv.venta.services.users.impl.StudentCRUDService;
 
-@Slf4j
+
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
 	
-    public void log() {
-        log.debug("Debug message");
-        log.info("Informational message");
-        log.warn("Warning message");
-        log.error("Error message");
-    }
-    
-    public void callLogMethod() {
-        log();
-    }
 	
 	@Autowired
 	CourseCRUDService courseService;
@@ -43,7 +32,6 @@ public class CourseController {
 	
 	@GetMapping("/showAll")
 	public String showAllCourses(Model model) {
-		
 		
 		List<Course> courses = courseService.getAll();
 		
@@ -57,7 +45,6 @@ public class CourseController {
 	
 	@GetMapping("/showOne/{id}")
 	public String showOneCourse(@PathVariable("id") long id,Model model) {
-		
 		
 		Course course = courseService.findCourseById(id);
 		
@@ -77,7 +64,6 @@ public class CourseController {
 	@GetMapping("/add")
 	public String insertNewCourse(Model model) {
 		
-		
 		model.addAttribute("courses", new Course());
 		
 		return "insert-new-course";
@@ -86,7 +72,6 @@ public class CourseController {
 	
 	@PostMapping("/add")
 	public String insertNewCourse2(@Valid Course course, BindingResult bindingResult) {
-		
 		
 		if (bindingResult.hasErrors()) {
 	        
