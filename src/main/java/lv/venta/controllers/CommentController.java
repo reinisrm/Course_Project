@@ -13,16 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import lv.venta.models.Comments;
 import lv.venta.services.impl.CommentsCRUDService;
 import lv.venta.services.impl.ThesisCRUDService;
 import lv.venta.services.users.impl.AcademicPersonelCRUDService;
 
+@Slf4j
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
 
-
+    public void log() {
+        log.debug("Debug message");
+        log.info("Informational message");
+        log.warn("Warning message");
+        log.error("Error message");
+    }
+    
+    public void callLogMethod() {
+        log();
+    }
 	
 	@Autowired
 	private CommentsCRUDService commentsService;

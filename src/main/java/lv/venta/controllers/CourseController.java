@@ -12,15 +12,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import lv.venta.models.Course;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 import lv.venta.services.impl.CourseCRUDService;
 import lv.venta.services.users.impl.StudentCRUDService;
 
+@Slf4j
 @Controller
 @RequestMapping("/courses")
 public class CourseController {
+	
+    public void log() {
+        log.debug("Debug message");
+        log.info("Informational message");
+        log.warn("Warning message");
+        log.error("Error message");
+    }
+    
+    public void callLogMethod() {
+        log();
+    }
 	
 	@Autowired
 	CourseCRUDService courseService;

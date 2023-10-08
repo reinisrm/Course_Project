@@ -13,10 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 import lv.venta.models.users.User;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+	
+    public void log() {
+        log.debug("Debug message");
+        log.info("Informational message");
+        log.warn("Warning message");
+        log.error("Error message");
+    }
+    
+    public void callLogMethod() {
+        log();
+    }
 
 	@Autowired
 	UserCRUDService userService;

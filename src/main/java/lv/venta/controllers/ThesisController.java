@@ -9,13 +9,26 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 
+@Slf4j
 @Controller
 @RequestMapping("/thesis")
 public class ThesisController {
 
+    public void log() {
+        log.debug("Debug message");
+        log.info("Informational message");
+        log.warn("Warning message");
+        log.error("Error message");
+    }
+    
+    public void callLogMethod() {
+        log();
+    }
+	
     @Autowired
     private IThesisCRUDService thesisService;
 

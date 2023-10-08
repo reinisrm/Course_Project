@@ -12,13 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import lv.venta.models.users.Person;
 import lv.venta.models.users.User;
 import lv.venta.services.users.impl.PersonCRUDService;
 import lv.venta.services.users.impl.UserCRUDService;
 
+@Slf4j
 @Controller
 public class HomeController {
+	
+    public void log() {
+        log.debug("Debug message");
+        log.info("Informational message");
+        log.warn("Warning message");
+        log.error("Error message");
+    }
+    
+    public void callLogMethod() {
+        log();
+    }
 	
 	@Autowired
 	private UserCRUDService userService;
