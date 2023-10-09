@@ -1,18 +1,17 @@
 package lv.venta.services.impl;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.models.Comments;
+
 import lv.venta.models.Thesis;
-import lv.venta.models.users.Academic_personel;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.services.IThesisCRUDService;
-import lv.venta.services.users.impl.AcademicPersonelCRUDService;
+
 
 @Service
 public class ThesisCRUDService implements IThesisCRUDService {

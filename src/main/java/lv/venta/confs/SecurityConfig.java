@@ -1,3 +1,4 @@
+/*
 package lv.venta.confs;
 
 import org.springframework.context.annotation.Bean;
@@ -60,26 +61,26 @@ public class SecurityConfig {
 			//.requestMatchers("/comments/delete").permitAll()
 			.requestMatchers("/courses/showAll").permitAll()
 			.requestMatchers("/courses/showOne/**").permitAll()
-			.requestMatchers("/courses/add").permitAll()
-			.requestMatchers("/courses/addDebt/**/**").permitAll()
-			.requestMatchers("/courses/removeDebt/**/**").permitAll()
-			.requestMatchers("/login").permitAll()
-			.requestMatchers("/register").permitAll()
-			.requestMatchers("/student/showAll").permitAll()
-			.requestMatchers("/student/show/**").permitAll()
-			.requestMatchers("/student/remove/**").permitAll()
-			.requestMatchers("/student/insertNew").permitAll()
-			.requestMatchers("/update/**").permitAll()
-			.requestMatchers("/thesis/showAll").permitAll()
-			.requestMatchers("/thesis/show/**").permitAll()
-			.requestMatchers("/thesis/remove/**").permitAll()
-			.requestMatchers("/thesis/insertNew").permitAll()
-			.requestMatchers("/thesis/update/**").permitAll()
-			.and()
-			.formLogin().permitAll()
-			.and()
-			.logout().permitAll();
-
+*/ //		.requestMatchers("/courses/add").permitAll()
+//			.requestMatchers("/courses/addDebt/**/**").permitAll()
+//			.requestMatchers("/courses/removeDebt/**/**").permitAll()
+//			.requestMatchers("/login").permitAll()
+//			.requestMatchers("/register").permitAll()
+//			.requestMatchers("/student/showAll").permitAll()
+//			.requestMatchers("/student/show/**").permitAll()
+//			.requestMatchers("/student/remove/**").permitAll()
+//			.requestMatchers("/student/insertNew").permitAll()
+//			.requestMatchers("/update/**").permitAll()
+//			.requestMatchers("/thesis/showAll").permitAll()
+//			.requestMatchers("/thesis/show/**").permitAll()
+//			.requestMatchers("/thesis/remove/**").permitAll()
+//			.requestMatchers("/thesis/insertNew").permitAll()
+//			.requestMatchers("/thesis/update/**").permitAll()
+//			.and()
+//			.formLogin().permitAll()
+//			.and()
+//			.logout().permitAll();
+/*
 		return http.build();
 	}
 
@@ -92,3 +93,4 @@ public class SecurityConfig {
 	
 	
 }
+*/

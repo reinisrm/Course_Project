@@ -6,7 +6,6 @@ import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
 import lv.venta.models.users.Academic_personel;
-import lv.venta.models.users.Person;
 import lv.venta.models.users.User;
 
 public interface IAcademicPersonelCRUDService {

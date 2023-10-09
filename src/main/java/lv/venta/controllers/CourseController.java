@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 import lv.venta.models.Course;
-import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 import lv.venta.services.impl.CourseCRUDService;
 import lv.venta.services.users.impl.StudentCRUDService;

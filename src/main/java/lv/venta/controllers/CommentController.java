@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
 import lv.venta.models.Comments;
 import lv.venta.services.impl.CommentsCRUDService;
-import lv.venta.services.impl.ThesisCRUDService;
-import lv.venta.services.users.impl.AcademicPersonelCRUDService;
+
 
 
 @Controller

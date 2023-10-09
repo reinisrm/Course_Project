@@ -7,14 +7,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Course;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyAuthority;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 import lv.venta.models.users.User;
+import lv.venta.repo.security.IMyAuthorityRepo;
+import lv.venta.repo.security.IMyUserRepo;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoCourse;
 import lv.venta.repos.IRepoThesis;
@@ -23,11 +29,17 @@ import lv.venta.repos.users.IRepoPerson;
 import lv.venta.repos.users.IRepoStudent;
 import lv.venta.repos.users.IRepoUser;
 
+
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class ProgInzCourseProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProgInzCourseProjectApplication.class, args);
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoderSimple() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
 	//@Bean //Calls function when system runs
@@ -38,7 +50,9 @@ public class ProgInzCourseProjectApplication {
 			IRepoPerson personRep,
 			IRepoStudent studentRep,
 			IRepoUser userRep,
-			IRepoComments commentsRep) {
+			IRepoComments commentsRep,
+			IMyAuthorityRepo authorityRep,
+			IMyUserRepo myUserRep) {
 		
 		
 		return new CommandLineRunner() {
@@ -47,6 +61,7 @@ public class ProgInzCourseProjectApplication {
 			public void run(String... args) throws Exception {
 				// TODO Auto-generated method stub
 				
+			
 				//Users
 				User user1 = new User("test0@test.com", "Abcd!s342");
 				User user2 = new User("test1@test.com", "Abcd!s342");
@@ -56,7 +71,28 @@ public class ProgInzCourseProjectApplication {
 				userRep.save(user2);
 				userRep.save(user3);
 				userRep.save(user4);
+				/*
+				MyUser user1 = new MyUser("Karina", "Krinkele", passwordEncoderSimple().encode("123"));
+				myUserRep.save(user1);
 				
+				MyUser user2 = new MyUser("Janis", "Berzins", passwordEncoderSimple().encode("321"));
+				myUserRep.save(user2);
+				
+				MyAuthority auth1 = new MyAuthority("ADMIN");
+				MyAuthority auth2 = new MyAuthority("USER");
+				
+				auth1.addUser(user1); // Karina ka ADMIN
+				auth2.addUser(user2); // Janis ka USER
+				auth2.addUser(user1); //Karina ka USER
+				authorityRep.save(auth1);
+				authorityRep.save(auth2);
+				
+				user1.addAuthority(auth1);
+				user1.addAuthority(auth2);
+				user2.addAuthority(auth2);
+				myUserRep.save(user1);
+				myUserRep.save(user2);
+				*/
 				
 				//Courses
 				Course c1 = new Course("Java_", 4);

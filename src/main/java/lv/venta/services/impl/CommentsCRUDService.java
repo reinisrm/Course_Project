@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.venta.models.Comments;
-import lv.venta.models.users.Person;
 import lv.venta.repos.IRepoComments;
 import lv.venta.services.ICommentsCRUDService;
 
