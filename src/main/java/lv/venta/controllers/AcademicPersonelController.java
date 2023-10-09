@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.validation.Valid;
 import lv.venta.enums.Degree;
 import lv.venta.models.users.Academic_personel;
-import lv.venta.models.users.User;
+import lv.venta.models.security.MyUser;
+import lv.venta.services.impl.security.MyUserDetailsManagerImpl;
 import lv.venta.services.users.impl.AcademicPersonelCRUDService;
-import lv.venta.services.users.impl.UserCRUDService;
+
 
 
 @Controller
@@ -27,7 +28,7 @@ public class AcademicPersonelController {
 	AcademicPersonelCRUDService personelService;
 	
 	@Autowired
-	UserCRUDService userService;
+	MyUserDetailsManagerImpl userService;
 	
 	
 	
@@ -90,7 +91,7 @@ public class AcademicPersonelController {
 	@GetMapping("/personel/add")
 	private String createPersonel(Model model) {
 		
-		List<User> users = userService.allUsers();
+		List<MyUser> users = userService.allUsers();
 		
 		Degree[] degrees = Degree.values();
 		

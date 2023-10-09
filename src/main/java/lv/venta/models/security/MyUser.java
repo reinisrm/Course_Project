@@ -10,81 +10,48 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lv.venta.models.users.Person;
 
 @Entity
-@Table(name = "MyUser")
+@Table(name = "user_table")
+@Data
+@NoArgsConstructor
 public class MyUser {
 
+	@Column(name = "id_user")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "MyUserId")
-	private int myUserId;
+	private int user_id;
 	
-	@NotNull
-	@Column(name = "Name")
-	private String name;
+	@Column(name = "password")
+	private String password;
 	
-	@NotNull
-	@Column(name = "Surname")
-	private String surname;
+	@Column(name = "email")
+	@Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{3,}", message = "Pirmajam burtam jābūt mazajam")
+	private String email;
 	
 	@NotNull
 	@Column(name = "Username")
 	private String username;
 	
-	@NotNull
-	@Column(name = "Password")
-	private String password;
+	
+	@OneToOne(mappedBy = "user")
+	@ToString.Exclude
+	private Person person;
+	
 	
 	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	private Collection<MyAuthority> authorities = new ArrayList<>();
 	
 	
-	
-
-	public int getMyUserId() {
-		return myUserId;
-	}
-
-	public void setMyUserId(int myUserId) {
-		this.myUserId = myUserId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	
+		
 	public Collection<MyAuthority> getAuthorities() {
 		return authorities;
 	}
@@ -92,16 +59,13 @@ public class MyUser {
 	public void setAuthorities(Collection<MyAuthority> authorities) {
 		this.authorities = authorities;
 	}
-
-	public MyUser() {
-		
-	}
 	
-	public MyUser(String name, String surname, String password) {
-	setName(name);
-	setSurname(surname);
-	setPassword(password);
-	username = name.toLowerCase() + "." + surname.toLowerCase();
+	public MyUser(
+			@Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{3,}", message = "Pirmajam burtam jābūt mazajam") String email, String password) {
+		super();
+		this.email = email;
+		setPassword(password);
+		username = email.toLowerCase();
 	}
 	
 	public void addAuthority(MyAuthority authority) {

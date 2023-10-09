@@ -1,3 +1,4 @@
+/*
 package lv.venta.services.users;
 
 import java.util.List;
@@ -17,3 +18,4 @@ public interface IUserCRUDService {
 	
 
 }
+*/

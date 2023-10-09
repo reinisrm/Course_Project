@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lv.venta.models.Course;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyUser;
 
 @Table(name = "student_table")
 @Entity
@@ -59,7 +60,7 @@ public class Student extends Person{
 		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String personName,
 		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
 		@Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstošs personas kods") @NotNull String personalCode,
-		User user, @NotNull @Pattern(regexp = "[0-9]{8,20}") String matriculaNo) {
+		MyUser user, @NotNull @Pattern(regexp = "[0-9]{8,20}") String matriculaNo) {
 	super(personName, surname, personalCode, user);
 	this.matriculaNo = matriculaNo;
 	}

@@ -1,4 +1,4 @@
-package lv.venta.models.users;
+/*package lv.venta.models.users;
 
 import jakarta.persistence.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,3 +57,4 @@ public class User {
 	
 	
 }
+ */

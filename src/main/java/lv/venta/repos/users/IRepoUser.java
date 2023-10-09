@@ -1,3 +1,4 @@
+/*
 package lv.venta.repos.users;
 
 import org.springframework.data.repository.CrudRepository;
@@ -12,3 +13,4 @@ public interface IRepoUser extends CrudRepository<User, Long>{
 	User findByEmail(String email);
 
 }
+*/

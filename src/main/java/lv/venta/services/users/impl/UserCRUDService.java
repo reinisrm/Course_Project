@@ -1,3 +1,4 @@
+/*
 package lv.venta.services.users.impl;
 
 import java.util.List;
@@ -60,3 +61,4 @@ public class UserCRUDService implements IUserCRUDService{
 	
 
 }
+*/

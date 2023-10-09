@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Person;
-import lv.venta.models.users.User;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.repos.users.IRepoAcademicPersonel;
@@ -54,7 +54,7 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 	}
 
 	@Override
-	public void addPersonelByUser(User user, Degree degree) throws Exception {
+	public void addPersonelByUser(MyUser user, Degree degree) throws Exception {
 		
 	try {	
 		

@@ -46,10 +46,14 @@ public class MyUserDetails implements UserDetails {
 	public String getPassword() {
 		return user.getPassword();
 	}
-
+	
 	@Override
 	public String getUsername() {
 		return user.getUsername();
+	}
+	
+	public String getEmail() {
+		return user.getEmail();
 	}
 
 	@Override
@@ -71,6 +75,8 @@ public class MyUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+
 
 }
 

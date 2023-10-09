@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.models.users.User;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Student;
+import lv.venta.repo.security.IMyUserRepo;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.users.IRepoStudent;
-import lv.venta.repos.users.IRepoUser;
 import lv.venta.services.impl.CommentsCRUDService;
 import lv.venta.services.users.IStudentCRUDService;
 
@@ -19,7 +19,7 @@ import lv.venta.services.users.IStudentCRUDService;
 public class StudentCRUDService implements IStudentCRUDService{
 
 	@Autowired
-	IRepoUser userRepo;
+	IMyUserRepo userRepo;
 	@Autowired
 	IRepoStudent studentRepo;
 	@Autowired
@@ -32,8 +32,8 @@ public class StudentCRUDService implements IStudentCRUDService{
 		return (ArrayList<Student>) studentRepo.findAll();
 	}
 	@Override
-	public List<User> getAllUsers() {
-	    return (List<User>) userRepo.findAll();
+	public List<MyUser> getAllUsers() {
+	    return (List<MyUser>) userRepo.findAll();
 	}
 
 	

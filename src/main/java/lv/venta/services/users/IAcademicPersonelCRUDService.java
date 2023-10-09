@@ -5,8 +5,9 @@ import java.util.List;
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Academic_personel;
-import lv.venta.models.users.User;
+
 
 public interface IAcademicPersonelCRUDService {
 	
@@ -19,7 +20,7 @@ public interface IAcademicPersonelCRUDService {
 	Academic_personel findById(long id);
 	
 	
-	void addPersonelByUser(User user, Degree degree) throws Exception;
+	void addPersonelByUser(MyUser user, Degree degree) throws Exception;
 	
 	void deletePersonelById(long id) throws Exception;
 

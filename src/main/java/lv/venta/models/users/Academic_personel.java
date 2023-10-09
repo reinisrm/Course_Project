@@ -13,6 +13,7 @@ import lombok.Setter;
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyUser;
 
 @Setter
 @Getter
@@ -41,7 +42,7 @@ public class Academic_personel extends Person{
 	public Academic_personel(@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-Z]{1}[a-z\\ ]+") String name,
 		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-Z]{1}[a-z\\ ]+") String surname,
 		@Size(min = 12, max = 12) @NotNull @Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstoss personas kods") String personalCode,
-		User user, Degree degree) {
+		MyUser user, Degree degree) {
 	super(name, surname, personalCode, user);
 	this.degree = degree;
 	}
