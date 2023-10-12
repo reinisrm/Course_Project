@@ -17,11 +17,13 @@ import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.User;
 import lv.venta.services.users.impl.AcademicPersonelCRUDService;
 import lv.venta.services.users.impl.UserCRUDService;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Controller
 public class AcademicPersonelController {
-	
+	 
+	private static Logger logger = LogManager.getLogger(AcademicPersonelController.class);
 	
 	@Autowired
 	AcademicPersonelCRUDService personelService;
@@ -61,7 +63,7 @@ public class AcademicPersonelController {
 			
 			
 		}catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Error in showOnePersonel: " + e.getMessage());
 		}
 		
 		
@@ -79,8 +81,7 @@ public class AcademicPersonelController {
 			return "redirect:/personel/showAll";
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error in deletePersonel: " + e.getMessage());
 		}
 		
 		return "error-page";
@@ -90,6 +91,7 @@ public class AcademicPersonelController {
 	@GetMapping("/personel/add")
 	private String createPersonel(Model model) {
 		
+		try {
 		List<User> users = userService.allUsers();
 		
 		Degree[] degrees = Degree.values();
@@ -99,9 +101,11 @@ public class AcademicPersonelController {
 		model.addAttribute("personel", new Academic_personel());
 		
 		model.addAttribute("degrees", degrees);
-		
-		
+		} catch (Exception e) {
+			logger.error("Error in createPersonel: " + e.getMessage());
+		}
 		return "insert-new-personel";
+		
 		
 	}
 	
@@ -109,7 +113,7 @@ public class AcademicPersonelController {
 	private String createPersonelPost(@Valid Academic_personel personel, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
-	        
+			logger.error("Error in createPersonelPost: Validation failed");
 	        return "error-page";
 	    }
 		
@@ -122,7 +126,8 @@ public class AcademicPersonelController {
 		
 		
 		personelService.insertNewPersonel(pers);
-		
+        logger.info("Academic Personel created: " + personel);
+        logger.debug("Redirecting to showAll personel after updating academic personnel.");
 		
 		return "redirect:/personel/showAll";
 	}
@@ -139,7 +144,7 @@ public class AcademicPersonelController {
 			model.addAttribute("personel", temp);
 			return "update-personel";
 		}catch (Exception e) {
-			
+			logger.error("Error in updatePersonelById: " + e.getMessage());
 			return "error-page";
 			
 		}
@@ -148,19 +153,20 @@ public class AcademicPersonelController {
 	
 	
 	@PostMapping("/personel/update/{id}")
-	public String updateDriverById2(@PathVariable int id, @Valid Academic_personel personel, BindingResult bindingResult) {
+	public String updatePersonelById2(@PathVariable int id, @Valid Academic_personel personel, BindingResult bindingResult) {
 		
 	    if (bindingResult.hasErrors()) {
+	    	logger.error("Error in updatePersonelById2: Validation failed");
 	        return "update-driver";
 	    }
 
 	    if (id > 0) {
-	    	
 	        personelService.updatePersonelById(id, personel);
 	        return "redirect:/personel/showAll";
-	    }
-
+	    } else {
+	    logger.error("Error in updatePersonelById2: Invalid ID");
 	    return "error-page";
+	    }
 	}
 	
 	

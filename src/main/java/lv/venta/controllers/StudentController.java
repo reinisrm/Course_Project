@@ -13,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lv.venta.models.users.User;
 import jakarta.validation.Valid;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
 
+	private static final Logger logger = LogManager.getLogger(StudentController.class);
+	
 	@Autowired
 	UserCRUDService userService;
 	
@@ -41,7 +44,7 @@ public class StudentController {
                 return "student-one-page";
             } 
         } catch (Exception e) {
-            e.printStackTrace();  // Log the error
+        	 logger.error("Error in showStudentByMatriculaNo: " + e.getMessage());
         }
         return "error-page";
     }
@@ -52,6 +55,7 @@ public class StudentController {
             studentService.deleteStudentByMatriculaNo(matriculaNo);
             return "redirect:/student/showAll";
         } catch (Exception e) {
+        	logger.error("Error in removeStudentByMatriculaNo: " + e.getMessage());
             return "error-page";
         }
     }
@@ -78,6 +82,7 @@ public class StudentController {
             studentService.insertNewStudent(stud);
             return "redirect:/student/showAll";
         } else {
+        	logger.error("Error in insertNewStudent");
             return "error-page";
         }
     }
@@ -89,6 +94,7 @@ public class StudentController {
             model.addAttribute("student", student);
             return "student-update-page";
         } catch (Exception e) {
+        	logger.error("Error in insertNewStudentPost: " + e.getMessage());
             return "error-page";
         }
     }
@@ -102,6 +108,7 @@ public class StudentController {
                 studentService.updateStudentByMatriculaNo(matriculaNo, student);
                 return "redirect:/student/show/" + student.getMatriculaNo();
             } catch (Exception e) {
+            	logger.error("Error in updateStudentByMatriculaNo: " + e.getMessage());
                 return "redirect:/error-page";
             }
         }

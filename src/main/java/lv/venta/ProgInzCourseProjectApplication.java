@@ -9,7 +9,10 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import lv.venta.controllers.AcademicPersonelController;
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Course;
@@ -33,9 +36,17 @@ import lv.venta.repos.users.IRepoUser;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class ProgInzCourseProjectApplication {
 
+	 private static Logger logger = LogManager.getLogger(AcademicPersonelController.class);
+	
 	public static void main(String[] args) {
+        logger.debug("Debug log message");
+        logger.info("Info log message");
+        logger.error("Error log message");
 		SpringApplication.run(ProgInzCourseProjectApplication.class, args);
+		
 	}
+	
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoderSimple() {
@@ -60,7 +71,7 @@ public class ProgInzCourseProjectApplication {
 			@Override
 			public void run(String... args) throws Exception {
 				// TODO Auto-generated method stub
-				
+
 			
 				//Users
 				User user1 = new User("test0@test.com", "Abcd!s342");

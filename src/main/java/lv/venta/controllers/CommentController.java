@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
 import lv.venta.models.Comments;
 import lv.venta.services.impl.CommentsCRUDService;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
 
-
+	private static final Logger logger = LogManager.getLogger(CommentController.class);
 	
 	@Autowired
 	private CommentsCRUDService commentsService;
@@ -48,7 +49,7 @@ public class CommentController {
 			return "show-one-comments";
 			
 		}catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Error in showOnePersonel: " + e.getMessage());
 		}
 		return "error-page";
 		
@@ -60,7 +61,7 @@ public class CommentController {
 //	    Comments tempComments = new Comments();
 //	    
 //	    model.addAttribute("comments", tempComments);
-	    
+	    try {
 	    ArrayList<Comments> comment = commentsService.selectAllComments();
 		
 		model.addAttribute("text", comment);
@@ -72,27 +73,38 @@ public class CommentController {
 		model.addAttribute("id_Thesis", comment);
 	    
 	    return "insert-new-comments";
+	    
+		} catch (Exception e) {
+			logger.error("Error in postComment: " + e.getMessage());
+			return "error-page";
+		}
+	    
+	    
 	}
 	
 	@PostMapping("/add")
 	private String createCommentsPost(@Valid Comments comments, BindingResult bindingResult) {
-		
-		if (bindingResult.hasErrors()) {
-	        
-	        return "error-page";
-	    }
-		
-		Comments com = new Comments(
-				comments.getText(), 
-				comments.getDate(),
-				comments.getPersonel(), 
-				comments.getThesis());
-		
-		
-		commentsService.insertNewComments(com);
-		
-		
-		return "redirect:/comments/showAll";
+		try {
+			if (bindingResult.hasErrors()) {
+		        
+		        return "error-page";
+		    }
+			
+			Comments com = new Comments(
+					comments.getText(), 
+					comments.getDate(),
+					comments.getPersonel(), 
+					comments.getThesis());
+			
+			
+			commentsService.insertNewComments(com);
+			
+			
+			return "redirect:/comments/showAll";
+		} catch (Exception e) {
+			logger.error("Error in createCommentsPost: " + e.getMessage());
+			return "error-page";
+		}
 	}
 	
 //	@GetMapping("/delete")
