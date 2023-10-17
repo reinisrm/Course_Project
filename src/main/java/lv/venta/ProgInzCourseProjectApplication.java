@@ -77,16 +77,22 @@ public class ProgInzCourseProjectApplication {
 				MyAuthority auth2 = new MyAuthority("USER");
 				
 				auth1.addUser(user1); // Karina ka ADMIN
-				auth2.addUser(user2); // Janis ka USER
-				auth2.addUser(user1); //Karina ka USER
+				auth1.addUser(user2); // Karlis ka ADMIN
+				auth2.addUser(user3); //Arvids ka user
+				auth2.addUser(user4); //Zigis ka user
 				authorityRep.save(auth1);
 				authorityRep.save(auth2);
 				
 				user1.addAuthority(auth1);
 				user1.addAuthority(auth2);
+				user2.addAuthority(auth1);
 				user2.addAuthority(auth2);
+				user3.addAuthority(auth2);
+				user4.addAuthority(auth2);
 				myUserRep.save(user1);
 				myUserRep.save(user2);
+				myUserRep.save(user3);
+				myUserRep.save(user4);
 				
 				
 				//Courses
