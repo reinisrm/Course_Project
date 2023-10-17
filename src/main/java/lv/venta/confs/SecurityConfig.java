@@ -25,7 +25,7 @@ public class SecurityConfig {
 		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**")); 
 	}
 	*/
-	@Bean
+	//@Bean
 	public MyUserDetailsManagerImpl userDetailsManeger() {
 		MyUserDetailsManagerImpl manager = new MyUserDetailsManagerImpl();
 		return manager;
@@ -50,7 +50,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
-
+			.requestMatchers("/home").permitAll()
 			.requestMatchers("/personel/showAll").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/personel/showOne/**").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/personel/delete/**").hasAnyAuthority("ADMIN")
@@ -71,7 +71,7 @@ public class SecurityConfig {
 			.requestMatchers("/student/show/**").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/student/remove/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/student/insertNew").hasAnyAuthority("ADMIN")
-			.requestMatchers("/update/**").hasAnyAuthority("ADMIN")
+			.requestMatchers("/student/update/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/thesis/showAll").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/thesis/show/**").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/thesis/remove/**").hasAnyAuthority("ADMIN")
