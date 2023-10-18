@@ -7,11 +7,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 
 import lv.venta.services.impl.security.MyUserDetailsManagerImpl;
 
@@ -19,7 +18,7 @@ import lv.venta.services.impl.security.MyUserDetailsManagerImpl;
 @EnableWebSecurity
 public class SecurityConfig {
 	/*
-	//TODO Nomainit no h2 uz SQL.
+
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
 		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**")); 
@@ -81,6 +80,18 @@ public class SecurityConfig {
 			.formLogin().permitAll()
 			.and()
 			.logout().permitAll();
+		
+		/*
+		         .and()
+        .formLogin()
+            .loginPage("/login")  // Specify the custom login page
+            .defaultSuccessURL("/home")  // Redirect after successful login
+            .permitAll()
+        .and()
+        .logout()
+            .permitAll(); 
+		 
+		 */
 
 		return http.build();
 	}
