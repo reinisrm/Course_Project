@@ -62,8 +62,8 @@ public class SecurityConfig {
 			.requestMatchers("/courses/showAll").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/courses/showOne/**").hasAnyAuthority("ADMIN", "USER")
 			.requestMatchers("/courses/add").hasAnyAuthority("ADMIN")
-			.requestMatchers("/courses/addDebt/**/**").hasAnyAuthority("ADMIN")
-			.requestMatchers("/courses/removeDebt/**/**").hasAnyAuthority("ADMIN")
+			.requestMatchers("/courses/addDebt/**").hasAnyAuthority("ADMIN")
+			.requestMatchers("/courses/removeDebt/**").hasAnyAuthority("ADMIN")
 			//.requestMatchers("/login").permitAll()
 			//.requestMatchers("/register").permitAll()
 			.requestMatchers("/student/showAll").hasAnyAuthority("ADMIN", "USER")
@@ -76,22 +76,19 @@ public class SecurityConfig {
 			.requestMatchers("/thesis/remove/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/thesis/insertNew").hasAnyAuthority("ADMIN")
 			.requestMatchers("/thesis/update/**").hasAnyAuthority("ADMIN")
-			.and()
-			.formLogin().permitAll()
-			.and()
-			.logout().permitAll();
+	         .and()
+	         .formLogin()
+	         //.loginPage("/login")  // Specify the custom login page
+	         .defaultSuccessUrl("/home")  // Redirect after successful login
+	         .permitAll()
+	         .and()
+	         .logout()
+	         .permitAll(); 
 		
-		/*
-		         .and()
-        .formLogin()
-            .loginPage("/login")  // Specify the custom login page
-            .defaultSuccessURL("/home")  // Redirect after successful login
-            .permitAll()
-        .and()
-        .logout()
-            .permitAll(); 
+
+
 		 
-		 */
+		
 
 		return http.build();
 	}
