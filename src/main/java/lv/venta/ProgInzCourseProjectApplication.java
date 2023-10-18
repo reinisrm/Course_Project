@@ -53,7 +53,7 @@ public class ProgInzCourseProjectApplication {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 	
-	//@Bean //Calls function when system runs
+	@Bean //Calls function when system runs
 	public CommandLineRunner testModel(
 			IRepoCourse courseRep, 
 			IRepoThesis thesisRep, 

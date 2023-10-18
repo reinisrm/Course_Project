@@ -142,6 +142,7 @@ public class AcademicPersonelController {
 			
 			model.addAttribute("degrees", degrees);
 			model.addAttribute("personel", temp);
+			logger.info("Academic Personel updated, id: " + id);
 			return "update-personel";
 		}catch (Exception e) {
 			logger.error("Error in updatePersonelById: " + e.getMessage());
