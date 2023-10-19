@@ -27,6 +27,10 @@
             background-color: #4CAF50;
             color: #333;
         }
+        .navbar .logout {
+	        float: right;
+	        margin-right: 60px; 
+	    }
 
         .content {
             padding: 20px;
@@ -71,38 +75,32 @@
         <a href="/thesis/showAll">Theses</a>
         <a href="/comments/showAll">Comments</a>
         <a href="/student/showAll">Students</a>
+        <a class="logout" href="http://localhost:8080/logout">Log out</a>
     </div>
+    
      <div class="content">
         <div class="container">
-            <form th:action="@{/thesis/update/{thesis_id}(thesis_id=${thesis.thesis_id})}" th:object="${thesis}" method="post">
-                <div>
+			<h2>Update Thesis</h2>
+            <form action ="#" th:action="@{/thesis/update/__${thesis_id}__}" th:object="${thesis}" method="post">
+             
                     <label for="titleLv">Nosaukums latviski</label>
                     <input type="text" id="titleLv" th:field="*{titleLv}" name="titleLv" required>
-                </div>
 
-                <div>
                     <label for="titleEn">Nosaukums angliski</label>
                     <input type="text" id="titleEn" th:field="*{titleEn}" name="titleEn" required>
-                </div>
-
-                <div>
+  
                     <label for="aim">Mērķis</label>
-                    <textarea id="aim" th:field="*{aim}" name="aim" required></textarea>
-                </div>
-
-                <div>
+                    <input type="text" id="aim" th:field="*{aim}" name="aim" required>
+        
                     <label for="tasks">Uzdevums</label>
-                    <textarea id="tasks" th:field="*{tasks}" name="tasks" required></textarea>
-                </div>
-                <div>
+                    <input type="text" id="tasks" th:field="*{tasks}" name="tasks" required>
+             
                     <label for="statusFromSupervisor">Supervisor statuss</label>
                     <select id="statusFromSupervisor" th:field="*{statusFromSupervisor}" name="statusFromSupervisor" required>
                         <option value="True">True</option>
                         <option value="False">False</option>
                     </select>
-                </div>
-
-                <div>
+             
                     <label for="status">Statuss</label>
                     <select id="status" th:field="*{status}" name="status" required>
                         <option value="Accepted">Accepted</option>
@@ -111,7 +109,7 @@
                         <option value="In_Review">In_Review</option>
                         <option value="Submitted">Submitted</option>
                     </select>
-                </div>
+              
 
 
                 <button type="submit">Atjaunot tēzi</button>

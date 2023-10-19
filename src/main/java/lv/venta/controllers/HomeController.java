@@ -1,3 +1,4 @@
+
 package lv.venta.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import lv.venta.models.users.Person;
-import lv.venta.models.users.User;
+import lv.venta.services.impl.security.MyUserDetailsManagerImpl;
 import lv.venta.services.users.impl.PersonCRUDService;
-import lv.venta.services.users.impl.UserCRUDService;
+
+
 
 @Controller
 public class HomeController {
 	
+	
 	@Autowired
-	private UserCRUDService userService;
+	private MyUserDetailsManagerImpl userService;
 	
 	@Autowired
 	private PersonCRUDService personService;
@@ -35,7 +38,7 @@ public class HomeController {
 	}
 
 	
-	
+/*	
 	@GetMapping("/login")
 	private String login(Model model) {
 		return "login";
@@ -75,8 +78,7 @@ public class HomeController {
 
 	
 	@GetMapping("/register")
-	public String register(Model model) {
-		
+	public String register(Model model) {	
 	    
 	    Person tempPerson = new Person();
 	    
@@ -126,7 +128,7 @@ public class HomeController {
 
 
 
-
+*/
 	
 	
 

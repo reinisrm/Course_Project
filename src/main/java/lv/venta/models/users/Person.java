@@ -19,6 +19,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lv.venta.models.security.MyUser;
 
 @Table(name = "person_table")
 @Entity
@@ -54,13 +55,13 @@ public class Person {
 	
 	@OneToOne
 	@JoinColumn(name = "id_user")
-	private User user;
+	private MyUser user;
 
 	public Person(
 			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String personName,
 			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
 			@Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstošs personas kods") @NotNull String personalCode,
-			User user) {
+			MyUser user) {
 		super();
 		this.personName = personName;
 		this.surname = surname;

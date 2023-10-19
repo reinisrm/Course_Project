@@ -2,6 +2,9 @@ package lv.venta.controllers;
 
 import lv.venta.models.Thesis;
 import lv.venta.services.IThesisCRUDService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +15,13 @@ import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 
+
 @Controller
 @RequestMapping("/thesis")
 public class ThesisController {
-
+	
+	private static Logger logger = LogManager.getLogger(ThesisController.class);
+	
     @Autowired
     private IThesisCRUDService thesisService;
 
@@ -32,6 +38,7 @@ public class ThesisController {
             model.addAttribute("MyThesisById", thesisService.selectThesisById(thesis_id));
             return "thesis-one-page";
         } catch (Exception e) {
+        	logger.error("Error in showThesisById: " + e.getMessage());
             return "error-page";
         }
     }
@@ -42,7 +49,7 @@ public class ThesisController {
             thesisService.deleteThesis(thesis_id);
             return "redirect:/thesis/showAll";
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error("Error in removeThesisById: " + e.getMessage());
             return "error-page";
         }
     }
@@ -59,10 +66,11 @@ public class ThesisController {
                 thesisService.insertNewThesis(thesis);
                 return "redirect:/thesis/showAll";
             } catch (RuntimeException e) {
+            	 logger.error("Error in insertNewThesis: " + e.getMessage());
                 return "error-page";
             }
         } else {
-            System.out.println(result.getAllErrors());
+        	logger.error("Error in insertNewThesis: Validation failed");
             return "error-page";
         }
     }
@@ -75,19 +83,22 @@ public class ThesisController {
             model.addAttribute("thesis", thesis);
             return "update-thesis";
         } catch (Exception e) {
+        	logger.error("Error in updateThesisById: " + e.getMessage());
             return "error-page";
         }
     }
 
     @PostMapping("/update/{thesis_id}")
     public String updateThesisById(@PathVariable("thesis_id") long thesis_id, @Valid Thesis thesis, BindingResult result) {
+    	System.out.print(thesis.getTitleLv());
         if (result.hasErrors()) {
-            return "thesis-update-page";
+            return "update-thesis";
         } else {
             try {
-                thesisService.updateThesis(thesis);
+                thesisService.updateThesis(thesis, thesis_id);
                 return "redirect:/thesis/showAll"; 
             } catch (Exception e) {
+            	logger.error("Error in updateThesisById: " + e.getMessage());
                 return "error-page";
             }
         }

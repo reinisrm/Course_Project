@@ -1,18 +1,17 @@
 package lv.venta.services.impl;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lv.venta.models.Comments;
+
 import lv.venta.models.Thesis;
-import lv.venta.models.users.Academic_personel;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.services.IThesisCRUDService;
-import lv.venta.services.users.impl.AcademicPersonelCRUDService;
+
 
 @Service
 public class ThesisCRUDService implements IThesisCRUDService {
@@ -68,10 +67,10 @@ public class ThesisCRUDService implements IThesisCRUDService {
 
 
     @Override
-    public void updateThesis(Thesis inputThesis) throws Exception {
-        Thesis thesis = thesisRepo.findById(inputThesis.getThesis_id())
+    public void updateThesis(Thesis inputThesis, long thesis_id) throws Exception {
+        Thesis thesis = thesisRepo.findById(thesis_id)
                 .orElseThrow(() -> new Exception("No Thesis found with this ID"));
-
+        
         thesis.setTitleLv(inputThesis.getTitleLv());
         thesis.setTitleEn(inputThesis.getTitleEn());
         thesis.setAim(inputThesis.getAim());

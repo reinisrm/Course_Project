@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Person;
-import lv.venta.models.users.User;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.repos.users.IRepoAcademicPersonel;
@@ -54,7 +54,7 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 	}
 
 	@Override
-	public void addPersonelByUser(User user, Degree degree) throws Exception {
+	public void addPersonelByUser(MyUser user, Degree degree) throws Exception {
 		
 	try {	
 		
@@ -86,25 +86,23 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 	public void deletePersonelById(long id) throws Exception {
 		
 	try {
-		if(findById(id)!= null) {			
-			for(Academic_personel temp: getAll()) {
-				if(temp.getPersonId() == id) {
-					
-					
+		Academic_personel temp = personelRepo.findById(id).get();
+				if (temp != null) {
+					System.out.print(temp.getPersonName());
 					for(Comments comment: commentsService.getAll()) {
-						if(comment.getPersonel().getPersonId() == id) {
+						if(comment.getPersonel() != null && comment.getPersonel().getPersonId() == id) {
 							comment.setPersonel(null);
 							
 							commentsRepo.save(comment);
 						}
 					}
 					
-					for(Thesis thesis: thesisService.selectAllThesis()) {
-						if(thesis.getPersonel().getPersonId() == id) {
-							thesis.setPersonel(null);
-							
+					for(Thesis thesis: thesisRepo.findAllByReviewersPersonId(id)) {
+							//thesis.setPersonel(null);
+							thesis.removeReviewer(temp);
 							thesisRepo.save(thesis);
-						}
+							temp.removeThesisForReview(thesis);
+							personelRepo.save(temp);
 					}
 					
 					personelRepo.delete(temp);
@@ -112,10 +110,10 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 					
 					
 				}
-			}
 			
 			
-		}
+			
+		
 		else {
 			throw new Exception("Persona netika atrasta!");
 		}
@@ -126,7 +124,7 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 		
 	}
 	catch (Exception e) {
-		
+		e.printStackTrace();
 	
 		
 	}

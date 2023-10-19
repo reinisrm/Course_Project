@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
 import lv.venta.models.Comments;
 import lv.venta.services.impl.CommentsCRUDService;
-import lv.venta.services.impl.ThesisCRUDService;
-import lv.venta.services.users.impl.AcademicPersonelCRUDService;
+
+
 
 @Controller
 @RequestMapping("/comments")
@@ -37,7 +37,6 @@ public class CommentController {
 
 	@GetMapping("/showOne/{id}")
 	private String showOnePersonel(@PathVariable("id") int id, Model model) {
-		
 		try {
 			
 			Comments temp = new Comments();
