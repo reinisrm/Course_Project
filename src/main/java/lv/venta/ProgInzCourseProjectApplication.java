@@ -26,15 +26,35 @@ import lv.venta.repos.users.IRepoAcademicPersonel;
 import lv.venta.repos.users.IRepoPerson;
 import lv.venta.repos.users.IRepoStudent;
 import lv.venta.repos.users.IRepoUser;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+
+import java.util.Locale;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
-public class ProgInzCourseProjectApplication {
+public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
+
+	private final LocaleChangeInterceptor localeChangeInterceptor;
+
+	public ProgInzCourseProjectApplication(LocaleChangeInterceptor localeChangeInterceptor) {
+		this.localeChangeInterceptor = localeChangeInterceptor;
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry interceptorRegistry) {
+		interceptorRegistry.addInterceptor(localeChangeInterceptor);
+	}
 
 	public static void main(String[] args) {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("lang/messages");
+		messageSource.setDefaultEncoding("UTF-8");
 		SpringApplication.run(ProgInzCourseProjectApplication.class, args);
 	}
 	
-	@Bean //Calls function when system runs
+	//@Bean //Calls function when system runs
 	public CommandLineRunner testModel(
 			IRepoCourse courseRep,
 			IRepoThesis thesisRep,
