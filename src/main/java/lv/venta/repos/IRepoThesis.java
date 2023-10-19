@@ -6,4 +6,6 @@ import lv.venta.models.Thesis;
 
 public interface IRepoThesis extends CrudRepository<Thesis, Long>{
 
+	Thesis[] findAllByReviewersPersonId(long id);
+
 }

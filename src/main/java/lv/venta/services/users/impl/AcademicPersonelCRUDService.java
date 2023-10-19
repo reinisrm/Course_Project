@@ -86,25 +86,24 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 	public void deletePersonelById(long id) throws Exception {
 		
 	try {
-		if(findById(id)!= null) {			
-			for(Academic_personel temp: getAll()) {
-				if(temp.getPersonId() == id) {
-					
-					
+		Academic_personel temp = personelRepo.findById(id).get();
+				if (temp != null) {
+					System.out.print(temp.getPersonName());
 					for(Comments comment: commentsService.getAll()) {
-						if(comment.getPersonel().getPersonId() == id) {
+						if(comment.getPersonel() != null && comment.getPersonel().getPersonId() == id) {
 							comment.setPersonel(null);
 							
 							commentsRepo.save(comment);
 						}
 					}
 					
-					for(Thesis thesis: thesisService.selectAllThesis()) {
-						if(thesis.getPersonel().getPersonId() == id) {
-							thesis.setPersonel(null);
-							
+					for(Thesis thesis: thesisRepo.findAllByReviewersPersonId(id)) {
+						 System.out.print(thesis.getTitleLv());
+							//thesis.setPersonel(null);
+							thesis.removeReviewer(temp);
 							thesisRepo.save(thesis);
-						}
+							temp.removeThesisForReview(thesis);
+							personelRepo.save(temp);
 					}
 					
 					personelRepo.delete(temp);
@@ -112,10 +111,10 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 					
 					
 				}
-			}
 			
 			
-		}
+			
+		
 		else {
 			throw new Exception("Persona netika atrasta!");
 		}
@@ -126,7 +125,7 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 		
 	}
 	catch (Exception e) {
-		
+		e.printStackTrace();
 	
 		
 	}

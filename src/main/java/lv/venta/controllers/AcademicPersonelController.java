@@ -72,7 +72,6 @@ public class AcademicPersonelController {
 	
 	@GetMapping("/personel/delete/{id}")
 	private String deletePersonel(@PathVariable("id") int id, Model model) {
-		
 		try {
 			personelService.deletePersonelById(id);
 			model.addAttribute("personel", personelService.getAll());
