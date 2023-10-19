@@ -63,7 +63,7 @@ public class CourseController {
 	@GetMapping("/add")
 	public String insertNewCourse(Model model) {
 		
-		model.addAttribute("courses", new Course());
+		model.addAttribute("course", new Course());
 		
 		return "insert-new-course";
 		
@@ -71,10 +71,9 @@ public class CourseController {
 	
 	@PostMapping("/add")
 	public String insertNewCourse2(@Valid Course course, BindingResult bindingResult) {
-		
 		if (bindingResult.hasErrors()) {
 	        
-	        return "error-page";
+	        return "insert-new-course";
 	    }
 		
 		Course temp = new Course(course.getTitle(), course.getCreditPoints());

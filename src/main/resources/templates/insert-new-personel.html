@@ -129,7 +129,7 @@
     <div class="content">
         
         <div class="container">
-            <form action="/personel/add" method="POST" th:object="${personel}">
+            <form th:action="@{/personel/add}" method="POST" th:object="${personel}">
                 <div>
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="personName" th:field="*{personName}" required>

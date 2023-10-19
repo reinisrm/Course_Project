@@ -3,6 +3,8 @@ package lv.venta.confs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +26,8 @@ public class SecurityConfig {
 		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**")); 
 	}
 	*/
+	
+
 	//@Bean
 	public MyUserDetailsManagerImpl userDetailsManeger() {
 		MyUserDetailsManagerImpl manager = new MyUserDetailsManagerImpl();
@@ -51,7 +55,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests()
 			.requestMatchers("/home").permitAll()
 			.requestMatchers("/personel/showAll").hasAnyAuthority("ADMIN", "USER")
-			.requestMatchers("/personel/showOne/**").hasAnyAuthority("ADMIN", "USER")
+			.requestMatchers("/personel/showOne/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/personel/delete/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/personel/add").hasAnyAuthority("ADMIN")
 			.requestMatchers("/personel/update/**").hasAnyAuthority("ADMIN")
@@ -60,8 +64,10 @@ public class SecurityConfig {
 			.requestMatchers("/comments/add").hasAnyAuthority("ADMIN")
 			.requestMatchers("/comments/delete").hasAnyAuthority("ADMIN")
 			.requestMatchers("/courses/showAll").hasAnyAuthority("ADMIN", "USER")
-			.requestMatchers("/courses/showOne/**").hasAnyAuthority("ADMIN", "USER")
-			.requestMatchers("/courses/add").hasAnyAuthority("ADMIN")
+			.requestMatchers("/courses/showOne/**").hasAnyAuthority("ADMIN")
+			.requestMatchers(HttpMethod.GET, "/courses/add").hasAnyAuthority("ADMIN")
+			.requestMatchers(HttpMethod.POST, "/courses/add").hasAnyAuthority("ADMIN")
+			//.requestMatchers("/courses/add").hasAnyAuthority("ADMIN")
 			.requestMatchers("/courses/addDebt/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/courses/removeDebt/**").hasAnyAuthority("ADMIN")
 			//.requestMatchers("/login").permitAll()
@@ -76,14 +82,14 @@ public class SecurityConfig {
 			.requestMatchers("/thesis/remove/**").hasAnyAuthority("ADMIN")
 			.requestMatchers("/thesis/insertNew").hasAnyAuthority("ADMIN")
 			.requestMatchers("/thesis/update/**").hasAnyAuthority("ADMIN")
-	         .and()
-	         .formLogin()
-	         //.loginPage("/login")  // Specify the custom login page
-	         .defaultSuccessUrl("/home")  // Redirect after successful login
-	         .permitAll()
-	         .and()
-	         .logout()
-	         .permitAll(); 
+	        .and()
+	        .formLogin()
+	        //.loginPage("/login")  // Specify the custom login page
+	        .defaultSuccessUrl("/home")  // Redirect after successful login
+	        .permitAll()
+	        .and()
+	        .logout()
+	        .permitAll(); 
 		
 
 

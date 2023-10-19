@@ -82,11 +82,12 @@ public class ThesisController {
 
     @PostMapping("/update/{thesis_id}")
     public String updateThesisById(@PathVariable("thesis_id") long thesis_id, @Valid Thesis thesis, BindingResult result) {
+    	System.out.print(thesis.getTitleLv());
         if (result.hasErrors()) {
-            return "thesis-update-page";
+            return "update-thesis";
         } else {
             try {
-                thesisService.updateThesis(thesis);
+                thesisService.updateThesis(thesis, thesis_id);
                 return "redirect:/thesis/showAll"; 
             } catch (Exception e) {
                 return "error-page";
