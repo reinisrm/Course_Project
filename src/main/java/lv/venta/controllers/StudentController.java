@@ -5,6 +5,8 @@ import lv.venta.models.users.Student;
 import lv.venta.services.impl.security.MyUserDetailsManagerImpl;
 import lv.venta.services.users.IStudentCRUDService;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +17,13 @@ import java.util.List;
 import jakarta.validation.Valid;
 
 
+
 @Controller
 @RequestMapping("/student")
 public class StudentController {
 
+	private static Logger logger = LogManager.getLogger(StudentController.class);
+	
 	@Autowired
 	MyUserDetailsManagerImpl userService;
 	
@@ -41,7 +46,7 @@ public class StudentController {
                 return "student-one-page";
             } 
         } catch (Exception e) {
-            e.printStackTrace();  // Log the error
+        	 logger.error("Error in showStudentByMatriculaNo: " + e.getMessage());
         }
         return "error-page";
     }
@@ -52,6 +57,7 @@ public class StudentController {
             studentService.deleteStudentByMatriculaNo(matriculaNo);
             return "redirect:/student/showAll";
         } catch (Exception e) {
+        	 logger.error("Error in removeStudentByMatriculaNo: " + e.getMessage());
             return "error-page";
         }
     }
@@ -78,6 +84,7 @@ public class StudentController {
             studentService.insertNewStudent(stud);
             return "redirect:/student/showAll";
         } else {
+        	 logger.error("Error in insertNewStudentPost: Validation failed");
             return "error-page";
         }
     }
@@ -89,6 +96,7 @@ public class StudentController {
             model.addAttribute("student", student);
             return "student-update-page";
         } catch (Exception e) {
+        	logger.error("Error in showUpdateForm: " + e.getMessage());
             return "error-page";
         }
     }
@@ -102,6 +110,7 @@ public class StudentController {
                 studentService.updateStudentByMatriculaNo(matriculaNo, student);
                 return "redirect:/student/show/" + student.getMatriculaNo();
             } catch (Exception e) {
+            	 logger.error("Error in updateStudentByMatriculaNo: " + e.getMessage());
                 return "redirect:/error-page";
             }
         }

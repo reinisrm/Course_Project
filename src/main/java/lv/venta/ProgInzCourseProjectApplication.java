@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 import lv.venta.enums.Degree;
 import lv.venta.models.Comments;
 import lv.venta.models.Course;
@@ -29,11 +30,14 @@ import lv.venta.repos.users.IRepoStudent;
 
 
 
+
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class ProgInzCourseProjectApplication {
 
+		
 	public static void main(String[] args) {
 		SpringApplication.run(ProgInzCourseProjectApplication.class, args);
+		
 	}
 	
 	@Bean

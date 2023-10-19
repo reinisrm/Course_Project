@@ -2,6 +2,8 @@ package lv.venta.controllers;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import lv.venta.services.users.impl.StudentCRUDService;
 @RequestMapping("/courses")
 public class CourseController {
 	
+	private static Logger logger = LogManager.getLogger(CourseController.class);
 	
 	@Autowired
 	CourseCRUDService courseService;
@@ -44,7 +47,7 @@ public class CourseController {
 	
 	@GetMapping("/showOne/{id}")
 	public String showOneCourse(@PathVariable("id") long id,Model model) {
-		
+		try {
 		Course course = courseService.findCourseById(id);
 		
 		List<Student> students = studentService.selectAllStudents();
@@ -56,21 +59,29 @@ public class CourseController {
 		model.addAttribute("students", students);
 		
 		return "show-one-courses";
+		} catch (Exception e) {
+            logger.error("Error in showOneCourse: " + e.getMessage());
+        }
+        return "error-page";
 		
 		
 	}
 	
 	@GetMapping("/add")
 	public String insertNewCourse(Model model) {
-		
+		try {
 		model.addAttribute("course", new Course());
 		
 		return "insert-new-course";
-		
+        } catch (Exception e) {
+            logger.error("Error in insertNewCourse: " + e.getMessage());
+        }
+        return "error-page";
 	}
 	
 	@PostMapping("/add")
 	public String insertNewCourse2(@Valid Course course, BindingResult bindingResult) {
+		try {
 		if (bindingResult.hasErrors()) {
 	        
 	        return "insert-new-course";
@@ -81,6 +92,10 @@ public class CourseController {
 		courseService.insertNewCourse(temp);
 		
 		return "redirect:/courses/showAll";
+        } catch (Exception e) {
+            logger.error("Error in insertNewCourse2: " + e.getMessage());
+            return "error-page";
+        }
 		
 	}
 	
@@ -100,8 +115,7 @@ public class CourseController {
 			
 			
 		} catch (Exception e) {
-			
-			e.printStackTrace();
+			logger.error("Error in addDebt: " + e.getMessage());
 		}
 		
 		return "error-page";
@@ -113,7 +127,7 @@ public class CourseController {
 	        courseService.removeDebtFromCourse(courseId, studentId);
 	        return "redirect:/courses/showOne/{courseId}";
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	    	logger.error("Error in removeDebt: " + e.getMessage());
 	    }
 	    return "error-page";
 	}

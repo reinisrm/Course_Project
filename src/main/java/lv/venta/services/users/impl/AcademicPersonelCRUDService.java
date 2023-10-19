@@ -98,7 +98,6 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 					}
 					
 					for(Thesis thesis: thesisRepo.findAllByReviewersPersonId(id)) {
-						 System.out.print(thesis.getTitleLv());
 							//thesis.setPersonel(null);
 							thesis.removeReviewer(temp);
 							thesisRepo.save(thesis);
