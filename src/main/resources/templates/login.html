@@ -65,18 +65,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation bar -->
-    <div class="navbar">
-        <a href="/home" th:text="#{home}"></a>
-        <a href="/personel/showAll" th:text="#{personel}"></a>
-        <a href="/courses/showAll" th:text="#{courses}"></a>
-        <a href="/thesis/showAll" th:text="#{theses}"></a>
-        <a href="/comments/showAll" th:text="#{comments}"></a>
-        <a href="/student/showAll" th:text="#{students}"></a>
-        <button type="button" th:text="#{switch-en}" th:if="${#locale.toString() != 'en'}" onclick="changeLanguage('en')"></button>
-        <button type="button" th:text="#{switch-lv}" th:if="${#locale.toString() != 'lv'}" onclick="changeLanguage('lv')"></button>
-    </div>
-
     <!-- Main content -->
     <!-- Login form -->
     <div class="container">S

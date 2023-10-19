@@ -27,15 +27,6 @@ import lv.venta.enums.Status;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- */
-
 
 @Setter
 @Getter

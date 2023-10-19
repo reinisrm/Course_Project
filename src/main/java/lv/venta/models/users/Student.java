@@ -14,7 +14,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -57,23 +56,18 @@ public class Student extends Person{
 
 
 	
-	public Student(
-<<<<<<< HEAD
-			String personName,
-		String surname,
-		String personalCode,
-		User user,
-			String matriculaNo) {
-=======
-
+	public Student (
 		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String personName,
 		@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
 		@Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstošs personas kods") @NotNull String personalCode,
 		MyUser user, @NotNull @Pattern(regexp = "[0-9]{8,20}") String matriculaNo) {
->>>>>>> f623841a0325b19c9f18e2e0d7e592854abe34c8
-	super(personName, surname, personalCode, user);
-	this.matriculaNo = matriculaNo;
+
+		super(personName, surname, personalCode, user);
+		this.matriculaNo = matriculaNo;
+
 	}
+
+
 	
 	
 	

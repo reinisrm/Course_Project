@@ -94,19 +94,5 @@ public class CommentController {
 		
 		return "redirect:/comments/showAll";
 	}
-	
-//	@GetMapping("/delete")
-//	public String deleteComment(Model model) {
-//		try
-//		{	
-//			commentsService.deleteComment();
-//			model.addAttribute("myAllComments", commentsService.retrieveAllComments());
-//			return "comment";
-//		}
-//		catch(Exception e){
-//			return "error-page";
-//		}
-//		
-//	}
-	
+
 }
