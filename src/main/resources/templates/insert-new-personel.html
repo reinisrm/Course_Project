@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Course Project</title>
+    <title th:text="#{courseProject}"></title>
     <style>
           body {
             margin: 0;
@@ -27,6 +27,11 @@
             background-color: #4CAF50;
             color: #333;
         }
+        
+        .navbar .logout {
+	        float: right;
+	        margin-right: 60px; 
+	    }
 
         .content {
             padding: 20px;
@@ -111,31 +116,34 @@
 <body>
     <!-- Navigation bar -->
     <div class="navbar">
-        <a href="/home">Home</a>
-        <a href="/personel/showAll">Personel</a>
-        <a href="/courses/showAll">Courses</a>
-        <a href="/thesis/showAll">Theses</a>
-        <a href="/comments/showAll">Comments</a>
-        <a href="/student/showAll">Students</a>
+
+        <a href="/home" th:text="#{home}"></a>
+        <a href="/personel/showAll" th:text="#{personel}"></a>
+        <a href="/courses/showAll" th:text="#{courses}"></a>
+        <a href="/thesis/showAll" th:text="#{theses}"></a>
+        <a href="/comments/showAll" th:text="#{comments}"></a>
+        <a href="/student/showAll" th:text="#{students}"></a>
+        <a class="logout" href="http://localhost:8080/logout" th:text="#{logout}"></a>
+
     </div>
 
    <!-- Main content -->
     <div class="content">
         
         <div class="container">
-            <form action="/personel/add" method="POST" th:object="${personel}">
+            <form th:action="@{/personel/add}" method="POST" th:object="${personel}">
                 <div>
-                    <label for="name">Name:</label>
+                    <label for="name" th:text="#{name}">:</label>
                     <input type="text" id="name" name="personName" th:field="*{personName}" required>
                     <span th:if="${#fields.hasErrors('personName')}" th:errors="*{personName}"></span>
                 </div>
                 <div>
-                    <label for="surname">Surname:</label>
+                    <label for="surname" th:text="#{surname}">:</label>
                     <input type="text" id="surname" name="surname" th:field="*{surname}" required>
                     <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
                 </div>
                 <div>
-                    <label for="personalCode">Personal Code:</label>
+                    <label for="personalCode" th:text="#{personalCode}">:</label>
                     <input type="text" id="personalCode" name="personalCode" th:field="*{personalCode}" required>
                     <span th:if="${#fields.hasErrors('personalCode')}" th:errors="*{personalCode}"></span>
                 </div>
@@ -151,7 +159,7 @@
                         <option th:each="degree : ${degrees}" th:value="${degree}" th:text="${degree}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn">Create</button>
+                <button type="submit" class="btn" th:text="#{create}"></button>
             </form>
         </div>
         
@@ -163,6 +171,10 @@
 
     
     <script>
+        function changeLanguage(language) {
+            var url = window.location.href.split('?')[0] + '?localeData=' + language;
+            window.location.href = url;
+        }
 
     </script>
     

@@ -2,6 +2,8 @@ package lv.venta.controllers;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import jakarta.validation.Valid;
 import lv.venta.models.Course;
@@ -24,7 +24,7 @@ import lv.venta.services.users.impl.StudentCRUDService;
 @RequestMapping("/courses")
 public class CourseController {
 	
-	private static final Logger logger = LogManager.getLogger(CourseController.class);
+	private static Logger logger = LogManager.getLogger(CourseController.class);
 	
 	@Autowired
 	CourseCRUDService courseService;
@@ -48,22 +48,21 @@ public class CourseController {
 	@GetMapping("/showOne/{id}")
 	public String showOneCourse(@PathVariable("id") long id,Model model) {
 		try {
+		Course course = courseService.findCourseById(id);
 		
-			Course course = courseService.findCourseById(id);
-			
-			List<Student> students = studentService.selectAllStudents();
-			
-			List<Student> debt = courseService.getDebtStudents(null);
-			
-			model.addAttribute("courses", course);
-			
-			model.addAttribute("students", students);
-			
-			return "show-one-courses";
+		List<Student> students = studentService.selectAllStudents();
+		
+		List<Student> debt = courseService.getDebtStudents(null);
+		
+		model.addAttribute("courses", course);
+		
+		model.addAttribute("students", students);
+		
+		return "show-one-courses";
 		} catch (Exception e) {
-			logger.error("Error in showOneCourse: " + e.getMessage());
-			return "error-page";
-		}
+            logger.error("Error in showOneCourse: " + e.getMessage());
+        }
+        return "error-page";
 		
 		
 	}
@@ -71,32 +70,32 @@ public class CourseController {
 	@GetMapping("/add")
 	public String insertNewCourse(Model model) {
 		try {
-			model.addAttribute("courses", new Course());
-			return "insert-new-course";
-		} catch (Exception e) {
-			logger.error("Error in insertNewCourse: " + e.getMessage());
-			return "error-page";
-		}
+		model.addAttribute("course", new Course());
 		
+		return "insert-new-course";
+        } catch (Exception e) {
+            logger.error("Error in insertNewCourse: " + e.getMessage());
+        }
+        return "error-page";
 	}
 	
 	@PostMapping("/add")
 	public String insertNewCourse2(@Valid Course course, BindingResult bindingResult) {
-		try { 
-			if (bindingResult.hasErrors()) {
-		        
-		        return "error-page";
-		    }
-			
-			Course temp = new Course(course.getTitle(), course.getCreditPoints());
-			
-			courseService.insertNewCourse(temp);
-			
-			return "redirect:/courses/showAll";
-		} catch (Exception e) {
-			logger.error("Error in insertNewCourse: " + e.getMessage());
-			return "error-page";
-		}
+		try {
+		if (bindingResult.hasErrors()) {
+	        
+	        return "insert-new-course";
+	    }
+		
+		Course temp = new Course(course.getTitle(), course.getCreditPoints());
+		
+		courseService.insertNewCourse(temp);
+		
+		return "redirect:/courses/showAll";
+        } catch (Exception e) {
+            logger.error("Error in insertNewCourse2: " + e.getMessage());
+            return "error-page";
+        }
 		
 	}
 	
@@ -106,13 +105,20 @@ public class CourseController {
 		
 	@PostMapping("/addDebt/{courseId}/{studentId}")
 	public String addDebt(@PathVariable long courseId,@PathVariable long studentId) {
+		
 		try {
+			
+			
 			courseService.addDebtById(courseId, studentId);
+			
 			return "redirect:/courses/showOne/{courseId}";
+			
+			
 		} catch (Exception e) {
 			logger.error("Error in addDebt: " + e.getMessage());
-			return "error-page";
 		}
+		
+		return "error-page";
 	}
 	
 	@PostMapping("/removeDebt/{courseId}/{studentId}")
@@ -122,9 +128,8 @@ public class CourseController {
 	        return "redirect:/courses/showOne/{courseId}";
 	    } catch (Exception e) {
 	    	logger.error("Error in removeDebt: " + e.getMessage());
-	    
-	    return "error-page";
 	    }
+	    return "error-page";
 	}
 
 	

@@ -27,6 +27,11 @@
             background-color: #4CAF50;
             color: #333;
         }
+        
+        .navbar .logout {
+	        float: right;
+	        margin-right: 60px; 
+	    }
 
         .content {
             padding: 20px;
@@ -65,38 +70,43 @@
 <body>
     <!-- Navigation bar -->
     <div class="navbar">
-        <a href="/home">Home</a>
-        <a href="/personel/showAll">Personel</a>
-        <a href="/courses/showAll">Courses</a>
-        <a href="/thesis/showAll">Theses</a>
-        <a href="/comments/showAll">Comments</a>
-        <a href="/student/showAll">Students</a>
+
+        <a href="/home" th:text="#{home}"></a>
+        <a href="/personel/showAll" th:text="#{personel}"></a>
+        <a href="/courses/showAll" th:text="#{courses}"></a>
+        <a href="/thesis/showAll" th:text="#{theses}"></a>
+        <a href="/comments/showAll" th:text="#{comments}"></a>
+        <a href="/student/showAll" th:text="#{students}"></a>
+        <button type="button" th:text="#{switch-en}" th:if="${#locale.toString() != 'en'}" onclick="changeLanguage('en')"></button>
+        <button type="button" th:text="#{switch-lv}" th:if="${#locale.toString() != 'lv'}" onclick="changeLanguage('lv')"></button>
+        <a class="logout" href="http://localhost:8080/logout" th:text="#{logout}"></a>
+
     </div>
 
     <!-- Main content -->
     <div class="content">
         <div class="container">
             <form th:action="@{/thesis/insertNew}" th:object="${thesis}" method="post">
-                <label for="titleLv">Nosaukums latviski</label>
+                <label for="titleLv" th:text="#{titleInLv}"></label>
                 <input type="text" id="titleLv" th:field="*{titleLv}" name="titleLv" required>
 
-                <label for="titleEn">Nosaukums angliski</label>
+                <label for="titleEn" th:text="#{titleInEn}"></label>
                 <input type="text" id="titleEn" th:field="*{titleEn}" name="titleEn" required>
 
-                <label for="aim">Mērķis</label>
+                <label for="aim" th:text="#{goal}"></label>
                 <textarea id="aim" th:field="*{aim}" name="aim" required></textarea>
 
-                <label for="tasks">Uzdevums</label>
+                <label for="tasks" th:text="#{mission}"></label>
                 <textarea id="tasks" th:field="*{tasks}" name="tasks" required></textarea>
 
-				<label for="statusFromSupervisor">Supervisor status</label>
+				<label for="statusFromSupervisor" th:text="#{supervisorStatus}"></label>
 				<select id="statusFromSupervisor" th:field="*{statusFromSupervisor}" name="statusFromSupervisor" required>
 				    <option value="True">True</option>
 				    <option value="False">False</option>
 
 				</select>
 				
-				<label for="status">Status</label>
+				<label for="status" th:text="#{status}"></label>
 				<select id="status" th:field="*{status}" name="status" required>
 				    <option value="Accepted">Accepted</option>
 				    <option value="Accepted_with_conditions">Accepted_with_conditions</option>
@@ -108,10 +118,18 @@
 
 
 
-                <button type="submit">Pievienot jaunu Tēzi</button>
+                <button type="submit" th:text="#{addNew}"></button>
             </form>
         </div>
     </div>
+
+    <script>
+
+        function changeLanguage(language) {
+            var url = window.location.href.split('?')[0] + '?localeData=' + language;
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 </html>

@@ -27,15 +27,6 @@ import lv.venta.enums.Status;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
 
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- */
-
 
 @Setter
 @Getter
@@ -110,6 +101,12 @@ public class Thesis {
 			reviewers.add(reviewer);
 		}
 	}
+	public void removeReviewer(Academic_personel reviewer) {
+		if(reviewers.contains(reviewer)) {
+			reviewers.remove(reviewer);
+		}
+	}
+	
 	
 	public void addComment(Comments comment) {
 		if(!comments.contains(comment)) {

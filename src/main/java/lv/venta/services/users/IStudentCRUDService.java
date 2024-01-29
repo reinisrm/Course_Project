@@ -3,9 +3,8 @@ package lv.venta.services.users;
 import java.util.ArrayList;
 import java.util.List;
 
-import lv.venta.models.Comments;
+import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Student;
-import lv.venta.models.users.User;
 
 public interface IStudentCRUDService {
 
@@ -19,7 +18,7 @@ public interface IStudentCRUDService {
 	
 	void updateStudentByMatriculaNo(String matriculaNo, Student student) throws Exception;
 
-	List<User> getAllUsers();
+	List<MyUser> getAllUsers();
 	
 	public Student findById(long id);
 	

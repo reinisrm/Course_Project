@@ -106,19 +106,5 @@ public class CommentController {
 			return "error-page";
 		}
 	}
-	
-//	@GetMapping("/delete")
-//	public String deleteComment(Model model) {
-//		try
-//		{	
-//			commentsService.deleteComment();
-//			model.addAttribute("myAllComments", commentsService.retrieveAllComments());
-//			return "comment";
-//		}
-//		catch(Exception e){
-//			return "error-page";
-//		}
-//		
-//	}
-	
+
 }

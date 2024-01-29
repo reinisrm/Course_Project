@@ -67,10 +67,10 @@ public class ThesisCRUDService implements IThesisCRUDService {
 
 
     @Override
-    public void updateThesis(Thesis inputThesis) throws Exception {
-        Thesis thesis = thesisRepo.findById(inputThesis.getThesis_id())
+    public void updateThesis(Thesis inputThesis, long thesis_id) throws Exception {
+        Thesis thesis = thesisRepo.findById(thesis_id)
                 .orElseThrow(() -> new Exception("No Thesis found with this ID"));
-
+        
         thesis.setTitleLv(inputThesis.getTitleLv());
         thesis.setTitleEn(inputThesis.getTitleEn());
         thesis.setAim(inputThesis.getAim());

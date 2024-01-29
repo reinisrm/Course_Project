@@ -2,6 +2,9 @@ package lv.venta.controllers;
 
 import lv.venta.models.Thesis;
 import lv.venta.services.IThesisCRUDService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +14,13 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import java.util.ArrayList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 @Controller
 @RequestMapping("/thesis")
 public class ThesisController {
 	
-	private static final Logger logger = LogManager.getLogger(ThesisController.class);
+	private static Logger logger = LogManager.getLogger(ThesisController.class);
 	
     @Autowired
     private IThesisCRUDService thesisService;
@@ -59,16 +61,16 @@ public class ThesisController {
 
     @PostMapping("/insertNew")
     public String insertNewThesis(@Valid Thesis thesis, BindingResult result) {
-        try {
-            if (!result.hasErrors()) {
+        if (!result.hasErrors()) {
+            try {
                 thesisService.insertNewThesis(thesis);
                 return "redirect:/thesis/showAll";
-            } else {
-                logger.error("Error in insertNewThesis: Validation error");
+            } catch (RuntimeException e) {
+            	 logger.error("Error in insertNewThesis: " + e.getMessage());
                 return "error-page";
             }
-        } catch (Exception e) {
-            logger.error("Error in insertNewThesis: " + e.getMessage());
+        } else {
+        	logger.error("Error in insertNewThesis: Validation failed");
             return "error-page";
         }
     }
@@ -88,14 +90,15 @@ public class ThesisController {
 
     @PostMapping("/update/{thesis_id}")
     public String updateThesisById(@PathVariable("thesis_id") long thesis_id, @Valid Thesis thesis, BindingResult result) {
+    	System.out.print(thesis.getTitleLv());
         if (result.hasErrors()) {
-            return "thesis-update-page";
+            return "update-thesis";
         } else {
             try {
-                thesisService.updateThesis(thesis);
+                thesisService.updateThesis(thesis, thesis_id);
                 return "redirect:/thesis/showAll"; 
             } catch (Exception e) {
-            	 logger.error("Error in updateThesisById: " + e.getMessage());
+            	logger.error("Error in updateThesisById: " + e.getMessage());
                 return "error-page";
             }
         }

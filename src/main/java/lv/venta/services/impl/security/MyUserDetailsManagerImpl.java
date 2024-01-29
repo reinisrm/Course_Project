@@ -1,20 +1,27 @@
 package lv.venta.services.impl.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.stereotype.Service;
 
 import lv.venta.utils.MyUserDetails;
 import lv.venta.models.security.MyUser;
 import lv.venta.repo.security.IMyUserRepo;
-
+@Service
 public class MyUserDetailsManagerImpl implements UserDetailsManager {
 
 	@Autowired
 	private IMyUserRepo userRepo;
 	
 	
+	public List<MyUser> allUsers() {
+		
+		return (List<MyUser>) userRepo.findAll();
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
