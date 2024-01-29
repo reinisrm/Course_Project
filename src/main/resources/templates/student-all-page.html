@@ -27,10 +27,10 @@
             background-color: #4CAF50;
             color: #333;
         }
-        
+
         .navbar .logout {
 	        float: right;
-	        margin-right: 60px; 
+	        margin-right: 60px;
 	    }
 
         .content {
@@ -80,7 +80,7 @@
         .btn:hover {
             background-color: #45a049;
         }
-        
+
     </style>
 </head>
 <body>
@@ -99,7 +99,7 @@
 
    <!-- Main content -->
     <div class="content">
-        
+
 <div class="container" th:if="${ not#lists.isEmpty(student)}">
     <table>
         <tr>
@@ -108,8 +108,9 @@
             <th th:text="#{surname}"></th>
             <th th:text="#{personalCode}"></th>
             <th th:text="#{matriculaNr}"></th>
+            <th>Actions</th>
 
-            
+
         </tr>
         <tr th:each="student : ${student}">
             <td th:text="${student.personId}"></td>
@@ -119,9 +120,7 @@
             <td th:text="${student.matriculaNo}"></td>
 
             <td>
-                <form th:action="@{/student/remove/{matriculaNo}(matriculaNo=${student.matriculaNo})}" th:method="post">
-                    <input type="submit" value="Delete"/>
-                </form>
+                <a th:href="@{'/student/show/' + ${student.matriculaNo}}" class="btn">View</a>
             </td>
         </tr>
     </table>
@@ -132,7 +131,7 @@
     </div>
 
 
-    
+
     <script>
 
         function changeLanguage(language) {
@@ -141,6 +140,6 @@
         }
 
     </script>
-    
+
 </body>
 </html>

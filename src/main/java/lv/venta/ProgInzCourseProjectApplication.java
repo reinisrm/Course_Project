@@ -98,6 +98,12 @@ public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 					MyUser user4 = new MyUser("zigiscelotajs@gmail.com", passwordEncoderSimple().encode("111"));
 					myUserRep.save(user4);
 
+					MyUser user5 = new MyUser("reinis@gmail.com", passwordEncoderSimple().encode("111"));
+					myUserRep.save(user5);
+
+					MyUser user6 = new MyUser("ricards@gmail.com", passwordEncoderSimple().encode("111"));
+					myUserRep.save(user6);
+
 					MyAuthority auth1 = new MyAuthority("ADMIN");
 					MyAuthority auth2 = new MyAuthority("USER");
 
@@ -108,6 +114,8 @@ public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 					auth2.addUser(user2); // Karlis ka USER
 					auth2.addUser(user3); //Arvids ka user
 					auth2.addUser(user4); //Zigis ka user
+					auth2.addUser(user5);
+					auth2.addUser(user6);
 					authorityRep.save(auth1);
 					authorityRep.save(auth2);
 
@@ -117,10 +125,14 @@ public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 					user2.addAuthority(auth2);
 					user3.addAuthority(auth2);
 					user4.addAuthority(auth2);
+					user5.addAuthority(auth2);
+					user6.addAuthority(auth2);
 					myUserRep.save(user1);
 					myUserRep.save(user2);
 					myUserRep.save(user3);
 					myUserRep.save(user4);
+					myUserRep.save(user5);
+					myUserRep.save(user6);
 
 
 					//Courses

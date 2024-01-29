@@ -28,12 +28,10 @@ public class Comments {
 	
 	@Column(name = "id_comment")
 	@Id
-	@Setter(value = AccessLevel.NONE)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long comment_id;
 	
 	@Column(name = "comment")
-	@Pattern(regexp = "^[A-Za-z0-9\\p{Punct}\\s]+$", message = "Pirmajam burtam jābūt lielajam")
 	private String text;
 	
 	@Column(name = "date")
@@ -48,8 +46,10 @@ public class Comments {
 	private Thesis thesis;
 
 	public Comments(
-			@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String text,
-			LocalDateTime date, Academic_personel personel, Thesis thesis) {
+			String text,
+			LocalDateTime date,
+			Academic_personel personel,
+			Thesis thesis) {
 		super();
 		this.text = text;
 		this.date = LocalDateTime.now();

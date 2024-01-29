@@ -37,18 +37,16 @@ import lv.venta.models.users.Student;
 public class Course {
 
 	@Column(name = "course_title")
-	@Pattern(regexp = "^[A-ZĒŪĪĻĶŠĀŽČŅ][a-zA-ZĒŪĪĻĶŠĀŽČŅ_\\ ]*", message = "Pirmajam burtam jābūt lielajam")
-	@Size(min = 5, max = 25)
+	@Size(min = 3, max = 25)
 	private String title;
 
 	@Column(name = "course_creditpoints")
 	@Min(value = 1)
-	@Max(value = 4)
+	@Max(value = 10)
 	private int creditPoints;
 
 	@Column(name = "course_id")
 	@Id
-	@Setter(value = AccessLevel.NONE)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long courseId;
 

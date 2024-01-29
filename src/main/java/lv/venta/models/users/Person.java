@@ -28,8 +28,7 @@ import lv.venta.models.security.MyUser;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person {
-	
-	@Setter(value = AccessLevel.NONE)
+
 	@Column(name = "id_person")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,9 +57,9 @@ public class Person {
 	private MyUser user;
 
 	public Person(
-			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String personName,
-			@NotNull @Size(min = 3, max = 15) @Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String surname,
-			@Pattern(regexp = "[0-9]{6}-[0-9]{5}\\ ]+", message = "Neatbilstošs personas kods") @NotNull String personalCode,
+			String personName,
+			String surname,
+			String personalCode,
 			MyUser user) {
 		super();
 		this.personName = personName;

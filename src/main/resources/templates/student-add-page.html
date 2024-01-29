@@ -88,16 +88,34 @@
         <div class="container">
             <form th:action="@{/student/insertNew}" th:object="${student}" method="post">
 
-				<div>
-				    <label for="user" th:text="#{user}">:</label>
-				    <select id="user" name="user.id" th:field="*{user}" required>
-				        <option th:each="user : ${users}" th:value="${user.user_id}" th:text="${user.email}"></option>
-				    </select>
-				</div>
-				<div>
-	                <label for="matriculaNo" th:text="#{matriculaNr}"></label>
-	                <input type="text" id="matriculaNo" th:field="*{matriculaNo}" name="matriculaNo" required>
-				</div>
+                <div>
+                    <label for="user" th:text="#{user}">:</label>
+                    <select id="user" name="user.id" th:field="*{user}" required>
+                        <option th:each="user : ${users}" th:value="${user.user_id}" th:text="${user.email}"></option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="personName" th:text="#{personName}"></label>
+                    <input type="text" id="personName" th:field="*{personName}" name="personName" required>
+                </div>
+
+                <div>
+                    <label for="surname" th:text="#{surname}"></label>
+                    <input type="text" id="surname" th:field="*{surname}" name="surname" required>
+                </div>
+
+                <div>
+                    <label for="personalCode" th:text="#{personalCode}"></label>
+                    <input type="text" id="personalCode" th:field="*{personalCode}" name="personalCode" required>
+                </div>
+
+                <div>
+                    <label for="matriculaNo" th:text="#{matriculaNr}"></label>
+                    <input type="text" id="matriculaNo" th:field="*{matriculaNo}" name="matriculaNo" required>
+                </div>
+
+
 
                 <button type="submit" th:text="#{addNew}"></button>
             </form>
