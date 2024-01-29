@@ -51,7 +51,7 @@ public class StudentController {
         return "error-page";
     }
 
-    @GetMapping("/remove/{matriculaNo}")
+    @PostMapping("/remove/{matriculaNo}")
     public String removeStudentByMatriculaNo(@PathVariable("matriculaNo") String matriculaNo) {
         try {
             studentService.deleteStudentByMatriculaNo(matriculaNo);
@@ -76,10 +76,10 @@ public class StudentController {
     public String insertNewStudentPost(@Valid @ModelAttribute("student") Student student,@ModelAttribute("user") MyUser user, BindingResult result) {
         if (!result.hasErrors()) {
         	Student stud = new Student(
-        			user.getPerson().getPersonName(),
-        			user.getPerson().getSurname(),
-        			user.getPerson().getPersonalCode(),
-        			user,
+                    student.getPersonName(),
+                    student.getSurname(),
+                    student.getPersonalCode(),
+                    student.getUser(),
         			student.getMatriculaNo());
             studentService.insertNewStudent(stud);
             return "redirect:/student/showAll";
@@ -94,7 +94,7 @@ public class StudentController {
         try {
             Student student = studentService.selectStudentByMatriculaNo(matriculaNo);
             model.addAttribute("student", student);
-            return "student-update-page";
+            return "update-student";
         } catch (Exception e) {
         	logger.error("Error in showUpdateForm: " + e.getMessage());
             return "error-page";
@@ -104,7 +104,7 @@ public class StudentController {
     @PostMapping("/update/{matriculaNo}")
     public String updateStudentByMatriculaNo(@PathVariable("matriculaNo") String matriculaNo, @Valid Student student, BindingResult result) {
         if (result.hasErrors()) {
-            return "student-update-page";
+            return "update-student";
         } else {
             try {
                 studentService.updateStudentByMatriculaNo(matriculaNo, student);

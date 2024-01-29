@@ -196,7 +196,7 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 			
 			
 		}catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 		
 		return null;

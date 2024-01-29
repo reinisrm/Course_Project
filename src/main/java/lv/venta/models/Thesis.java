@@ -34,35 +34,24 @@ import lv.venta.models.users.Student;
 @Table(name="thesis_table")
 @NoArgsConstructor
 public class Thesis {
-	
-	
-	@Setter(value = AccessLevel.NONE)
+
 	@Column(name = "thesis_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long thesis_id;
-	
-	
-	//TODO pieviento validacijas	
+
 	@Column(name = "TitleLv")
-	@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam")
-	@Size(min = 5, max = 25)
+	@Size(min = 3, max = 25)
 	private String titleLv;
-	
-	//TODO pieviento validacijas
+
 	@Column(name = "TitleEn")
-	@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Pirmajam burtam jābūt lielajam")
-	@Size(min = 5, max = 25)
+	@Size(min = 3, max = 25)
 	private String titleEn;
-	
-	//TODO pieviento validacijas	
+
 	@Column(name = "aim")
-	@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam")
 	private String aim;
-		
-	//TODO pieviento validacijas
+
 	@Column(name = "tasks")
-	@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam")
 	private String tasks;
 	
 	//TODO pie jauna objekta izveides jauzliek LocalDateTime.now()
@@ -115,10 +104,10 @@ public class Thesis {
 	}
 
 	public Thesis(
-			@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") @Size(min = 5, max = 25) String titleLv,
-			@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Pirmajam burtam jābūt lielajam") @Size(min = 5, max = 25) String titleEn,
-			@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String aim,
-			@Pattern(regexp = "[A-ZĒŪĪĻĶŠĀŽČŅ]{1}[a-zēūīļķšāžčņ\\ ]+", message = "Pirmajam burtam jābūt lielajam") String tasks,
+			String titleLv,
+			String titleEn,
+			String aim,
+			String tasks,
 			Student student, Academic_personel personel) {
 		super();
 		this.titleLv = titleLv;

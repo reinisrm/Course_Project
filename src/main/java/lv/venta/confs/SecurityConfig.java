@@ -58,6 +58,7 @@ public class SecurityConfig {
 						.requestMatchers("/courses/add").hasAnyAuthority("ADMIN")
 						.requestMatchers("/courses/addDebt/**").hasAnyAuthority("ADMIN")
 						.requestMatchers("/courses/removeDebt/**").hasAnyAuthority("ADMIN")
+						.requestMatchers("/courses/delete/**").hasAnyAuthority("ADMIN")
 						.requestMatchers("/student/showAll").hasAnyAuthority("ADMIN", "USER")
 						.requestMatchers("/student/show/**").hasAnyAuthority("ADMIN", "USER")
 						.requestMatchers("/student/remove/**").hasAnyAuthority("ADMIN")
