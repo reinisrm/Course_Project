@@ -44,8 +44,8 @@ class StudentControllerTest {
     @BeforeEach
     void setup() {
         studentList = new ArrayList<>();
-        Student student1 = new Student("John", "Doe", "123456-12345", new MyUser(), "M123");
-        Student student2 = new Student("Jane", "Doe", "654321-54321", new MyUser(), "M456");
+        Student student1 = new Student("Reinis", "Ricards", "123456-12345", new MyUser(), "348593849");
+        Student student2 = new Student("Ricards", "Reinis", "654321-54321", new MyUser(), "495748399");
         studentList.add(student1);
         studentList.add(student2);
     }
@@ -62,8 +62,8 @@ class StudentControllerTest {
 
     @Test
     void testShowStudentByMatriculaNo() throws Exception {
-        String matriculaNo = "M123";
-        Student student = new Student("John", "Doe", "123456-12345", new MyUser(), matriculaNo);
+        String matriculaNo = "348593849";
+        Student student = new Student("Reinis", "Ricards", "123456-12345", new MyUser(), matriculaNo);
         when(studentService.selectStudentByMatriculaNo(matriculaNo)).thenReturn(student);
 
         String viewName = studentController.showStudentByMatriculaNo(matriculaNo, model);
@@ -74,7 +74,7 @@ class StudentControllerTest {
 
     @Test
     void testRemoveStudentByMatriculaNo() throws Exception {
-        String matriculaNo = "M123";
+        String matriculaNo = "348593849";
 
         doNothing().when(studentService).deleteStudentByMatriculaNo(matriculaNo);
 
@@ -98,7 +98,7 @@ class StudentControllerTest {
 
     @Test
     void testInsertNewStudentPost() {
-        Student student = new Student("John", "Doe", "123456-12345", new MyUser(), "M123");
+        Student student = new Student("Reinis", "Ricards", "123456-12345", new MyUser(), "M123");
 
         when(bindingResult.hasErrors()).thenReturn(false);
         doNothing().when(studentService).insertNewStudent(any(Student.class));
@@ -110,8 +110,8 @@ class StudentControllerTest {
 
     @Test
     void testShowUpdateForm() throws Exception {
-        String matriculaNo = "M123";
-        Student student = new Student("John", "Doe", "123456-12345", new MyUser(), matriculaNo);
+        String matriculaNo = "348593849";
+        Student student = new Student("Reinis", "Ricards", "123456-12345", new MyUser(), matriculaNo);
         when(studentService.selectStudentByMatriculaNo(matriculaNo)).thenReturn(student);
 
         String viewName = studentController.showUpdateForm(matriculaNo, model);
@@ -122,8 +122,8 @@ class StudentControllerTest {
 
     @Test
     void testUpdateStudentByMatriculaNo() throws Exception {
-        String matriculaNo = "M123";
-        Student student = new Student("John", "Doe", "123456-12345", new MyUser(), matriculaNo);
+        String matriculaNo = "348593849";
+        Student student = new Student("Reinis", "Ricards", "123456-12345", new MyUser(), matriculaNo);
 
         when(bindingResult.hasErrors()).thenReturn(false);
         doNothing().when(studentService).updateStudentByMatriculaNo(eq(matriculaNo), any(Student.class));
