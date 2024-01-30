@@ -155,6 +155,22 @@ public class AcademicPersonelController {
 		}
         
     }
+
+	@PostMapping("/personel/update/{id}")
+	public String updatePersonelById2(@PathVariable int id, @Valid Academic_personel personel, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			logger.error("Error in updatePersonelById2: Validation failed");
+			return "update-personel";
+		}
+
+		if (id > 0) {
+			personelService.updatePersonelById(id, personel);
+			return "redirect:/personel/showAll";
+		} else {
+			logger.error("Error in updatePersonelById2: Invalid ID");
+			return "error-page";
+		}
+	}
 	
 	
 	@PostMapping("/personel/update/{id}")
