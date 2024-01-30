@@ -11,8 +11,8 @@ X
 java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ
 N
 java:S18547"8Remove this useless assignment to local variable "temp".(Öã¢¢
-\
-java:S3457C"AFormat specifiers should be used instead of string concatenation.(µÁÜãøÿÿÿÿ
+c
+java:S3457C"AFormat specifiers should be used instead of string concatenation.(µÁÜãøÿÿÿÿ8ÇéĞÕ1
 W
 java:S3457S"AFormat specifiers should be used instead of string concatenation.(‡Ìİ»
 W

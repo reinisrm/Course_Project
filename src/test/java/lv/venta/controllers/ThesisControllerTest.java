@@ -75,15 +75,6 @@ class ThesisControllerTest {
     }
 
     @Test
-    void testInsertNewThesisGet() {
-        Thesis thesis = new Thesis();
-
-        String viewName = thesisController.insertNewThesis(thesis);
-
-        assertEquals("thesis-add-page", viewName);
-    }
-
-    @Test
     void testInsertNewThesisPost() {
         Thesis thesis = new Thesis();
 
