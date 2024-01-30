@@ -1,0 +1,7 @@
+
+b
+java:S1192/"GDefine a constant instead of duplicating this literal "ADMIN" 25 times.(Ðò³ùøÿÿÿÿ
+z
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "manager".(•©øÚøÿÿÿÿ
+c
+java:S1612K"HReplace this lambda with method reference 'LogoutConfigurer::permitAll'.(‘Ê£žøÿÿÿÿ

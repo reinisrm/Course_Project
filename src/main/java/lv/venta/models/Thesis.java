@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,13 +15,10 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lv.venta.enums.Degree;
 import lv.venta.enums.Status;
 import lv.venta.models.users.Academic_personel;
 import lv.venta.models.users.Student;
@@ -53,15 +49,13 @@ public class Thesis {
 
 	@Column(name = "tasks")
 	private String tasks;
-	
-	//TODO pie jauna objekta izveides jauzliek LocalDateTime.now()
+
 	@Column(name = "SubmitDate" )
 	private LocalDateTime submitDate;
 	
 	@Column(name = "StatussFromSupervisors")
 	private boolean statusFromSupervisor;
-	
-	//TODO uzlikt Submitted as default
+
 	@Column(name = "Status")
 	private Status status;
 	

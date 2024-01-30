@@ -1,8 +1,6 @@
 package lv.venta.services;
 import java.util.ArrayList;
-import java.util.List;
 
-import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
 
 public interface IThesisCRUDService {

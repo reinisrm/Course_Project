@@ -1,0 +1,13 @@
+
+f
+java:S11926"KDefine a constant instead of duplicating this literal "error-page" 4 times.(ûÎô—ûÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+S
+java:S1854+"8Remove this useless assignment to local variable "temp".(ê»¸…úÿÿÿÿ
+\
+java:S34574"AFormat specifiers should be used instead of string concatenation.(µÁÜãøÿÿÿÿ
+W
+java:S3457K"AFormat specifiers should be used instead of string concatenation.(æ¢°¦
+\
+java:S3457f"AFormat specifiers should be used instead of string concatenation.(â£µÜıÿÿÿÿ

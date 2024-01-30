@@ -1,0 +1,28 @@
+
+a	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(áĞêËşÿÿÿÿ
+\	java:S112—"FDefine and throw a dedicated exception instead of using a generic one.(µı¾…
+\	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(µ®å²
+\	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(Üíäì
+a	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(áĞêËşÿÿÿÿ
+\	java:S112Ï"FDefine and throw a dedicated exception instead of using a generic one.(µı¾…
+\	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(Ë‚Ì‡
+\	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(Üíäì
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+E	java:S108-")Either remove or fill this block of code.(”ı¾8ÓÓÑĞÕ1
+N
+java:S18546"8Remove this useless assignment to local variable "temp".(­ˆùš
+E	java:S108J")Either remove or fill this block of code.(”ı¾8ºâÒĞÕ1
+E	java:S108^")Either remove or fill this block of code.(”ı¾8Î­ÓĞÕ1
+A
+java:S1168o"+Return an empty collection instead of null.(¥¹ï
+E	java:S108q")Either remove or fill this block of code.(”ı¾8öÉÓĞÕ1
+A
+java:S1168u"+Return an empty collection instead of null.(¥¹ï
+F	java:S108†")Either remove or fill this block of code.(”ı¾8 üÓĞÕ1
+O
+java:S1854œ"8Remove this useless assignment to local variable "debt".(Ä•³

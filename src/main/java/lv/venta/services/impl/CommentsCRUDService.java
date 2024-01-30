@@ -37,22 +37,18 @@ public class CommentsCRUDService implements ICommentsCRUDService{
 			}
 	    }
 		catch (Exception e) {
-			// TODO: handle exception
 		}
 		return null;
 	}
 
 	@Override
 	public void insertNewComments(Comments comments) {
-		//commentsList.add(comments);
-		return;
 	}
 
 	@Override
     public void deleteCommentsById(long id) throws Exception {
         for (Comments comments : getAll()) {
             if (comments.getComment_id() == id) {
-                //commentsList.remove(comments);
                 return;
             }
         }
@@ -64,7 +60,6 @@ public class CommentsCRUDService implements ICommentsCRUDService{
 
 	@Override
 	public ArrayList<Comments> selectAllComments() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

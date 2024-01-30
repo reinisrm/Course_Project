@@ -1,0 +1,11 @@
+
+E
+java:S1066@"/Merge this if statement with the enclosing one.(ÈŒ¤Ê
+E
+java:S1066V"/Merge this if statement with the enclosing one.(›²Š
+h	java:S100:"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Áª¥øÿÿÿÿ
+h	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ƒÎùÿÿÿÿ
+L
+java:S1144:"1Remove this unused private "AddRecipient" method.(„Áª¥øÿÿÿÿ
+O
+java:S1144P"4Remove this unused private "RemoveRecipient" method.(†ƒÎùÿÿÿÿ

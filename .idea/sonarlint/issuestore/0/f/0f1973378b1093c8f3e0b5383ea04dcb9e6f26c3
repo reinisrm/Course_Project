@@ -1,0 +1,21 @@
+
+q
+java:S1192P"[Define a constant instead of duplicating this literal "redirect:/personel/showAll" 4 times.(äÒ§…
+_
+java:S1192,"IDefine a constant instead of duplicating this literal "personel" 5 times.(×ïìÈ
+f
+java:S1192G"KDefine a constant instead of duplicating this literal "error-page" 6 times.(ûÎô—ûÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813""BRemove this field injection and use constructor injection instead.(êæÄŞ
+N
+java:S18547"8Remove this useless assignment to local variable "temp".(Öã¢¢
+\
+java:S3457C"AFormat specifiers should be used instead of string concatenation.(µÁÜãøÿÿÿÿ
+W
+java:S3457S"AFormat specifiers should be used instead of string concatenation.(‡Ìİ»
+W
+java:S3457h"AFormat specifiers should be used instead of string concatenation.(§óúò
+]
+java:S3457“"AFormat specifiers should be used instead of string concatenation.(ä‰¤¦øÿÿÿÿ

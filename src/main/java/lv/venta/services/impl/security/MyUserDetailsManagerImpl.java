@@ -62,10 +62,10 @@ public class MyUserDetailsManagerImpl implements UserDetailsManager {
 		}
 		
 	}
-	//TODO implementet kad tas ir nepieciesams
+
 	@Override
 	public void changePassword(String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

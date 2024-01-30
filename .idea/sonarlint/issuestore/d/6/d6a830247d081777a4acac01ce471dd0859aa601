@@ -1,0 +1,11 @@
+
+z
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "details".(ÇÄ›Óüÿÿÿÿ
+£
+java:S1186C"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ò†»şÿÿÿÿ8¬±ËĞÕ1
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+u
+java:S41440"ZUpdate this method so that its implementation is not identical to "createUser" on line 39.(†­¥ƒüÿÿÿÿ
+\
+java:S1126L"AReplace this if-then-else statement by a single return statement.(¤¦ß‘üÿÿÿÿ

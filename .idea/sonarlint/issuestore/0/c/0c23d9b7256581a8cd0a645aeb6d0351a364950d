@@ -1,0 +1,13 @@
+
+o
+java:S11922"YDefine a constant instead of duplicating this literal "redirect:/thesis/showAll" 3 times.(·›ù
+f
+java:S1192*"KDefine a constant instead of duplicating this literal "error-page" 5 times.(ûÎô—ûÿÿÿÿ
+b
+java:S1192"GDefine a constant instead of duplicating this literal "thesis" 3 times.(ÄÓĞúÿÿÿÿ
+f	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñÜ£ø
+k	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼Üïàüÿÿÿÿ
+k	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À¦¯òıÿÿÿÿ
+e	java:S117\"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô–¬c
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ

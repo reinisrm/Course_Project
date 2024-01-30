@@ -11,7 +11,6 @@ import lv.venta.models.Comments;
 import lv.venta.models.Thesis;
 import lv.venta.models.security.MyUser;
 import lv.venta.models.users.Academic_personel;
-import lv.venta.models.users.Person;
 import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.repos.users.IRepoAcademicPersonel;
@@ -98,7 +97,6 @@ public class AcademicPersonelCRUDService implements IAcademicPersonelCRUDService
 					}
 					
 					for(Thesis thesis: thesisRepo.findAllByReviewersPersonId(id)) {
-							//thesis.setPersonel(null);
 							thesis.removeReviewer(temp);
 							thesisRepo.save(thesis);
 							temp.removeThesisForReview(thesis);

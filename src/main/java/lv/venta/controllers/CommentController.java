@@ -37,7 +37,7 @@ public class CommentController {
     }
 
 	@GetMapping("/showOne/{id}")
-	private String showOnePersonel(@PathVariable("id") int id, Model model) {
+	public String showOnePersonel(@PathVariable("id") int id, Model model) {
 		try {
 			
 			Comments temp = new Comments();
@@ -57,10 +57,7 @@ public class CommentController {
 	
 	@GetMapping("/add")
 	public String postComment(Model model) {
-		
-//	    Comments tempComments = new Comments();
-//	    
-//	    model.addAttribute("comments", tempComments);
+
 	    try {
 	    ArrayList<Comments> comment = commentsService.selectAllComments();
 		
@@ -83,7 +80,7 @@ public class CommentController {
 	}
 	
 	@PostMapping("/add")
-	private String createCommentsPost(@Valid Comments comments, BindingResult bindingResult) {
+	public String createCommentsPost(@Valid Comments comments, BindingResult bindingResult) {
 		try {
 			if (bindingResult.hasErrors()) {
 		        

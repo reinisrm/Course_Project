@@ -1,0 +1,17 @@
+
+^
+java:S1192$"HDefine a constant instead of duplicating this literal "student" 3 times.(×ªç¥
+f
+java:S11923"KDefine a constant instead of duplicating this literal "error-page" 4 times.(ûÎô—ûÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+W
+java:S34571"AFormat specifiers should be used instead of string concatenation.(‹á­ï
+W
+java:S3457<"AFormat specifiers should be used instead of string concatenation.(ƒ­…è
+W
+java:S3457c"AFormat specifiers should be used instead of string concatenation.(ñø¶
+W
+java:S3457q"AFormat specifiers should be used instead of string concatenation.(ÿŒ¨Ê

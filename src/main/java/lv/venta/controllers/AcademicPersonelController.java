@@ -42,7 +42,6 @@ public class AcademicPersonelController {
 		List<Academic_personel> academicPersonel = personelService.getAll();
 		
 		model.addAttribute("personel", academicPersonel);
-		logger.info("Displaying all academic personnel.");
 		return "show-all-personel";
 		
 	}
@@ -58,7 +57,6 @@ public class AcademicPersonelController {
 			temp = personelService.findById(id);
 			
 			model.addAttribute("personel", temp);
-			logger.info("Displaying details for academic personnel with ID: " + id);
 			return "show-one-personel";
 					
 			
@@ -79,7 +77,6 @@ public class AcademicPersonelController {
 		try {
 			personelService.deletePersonelById(id);
 			model.addAttribute("personel", personelService.getAll());
-			logger.info("Deleting academic personnel with ID: " + id);		
 			return "redirect:/personel/showAll";
 			
 		} catch (Exception e) {
@@ -129,7 +126,6 @@ public class AcademicPersonelController {
 		
 		
 		personelService.insertNewPersonel(pers);
-        logger.info("Academic Personel created: " + personel);
         logger.debug("Redirecting to showAll after creating academic personnel.");
 		
 		
@@ -146,7 +142,6 @@ public class AcademicPersonelController {
 			
 			model.addAttribute("degrees", degrees);
 			model.addAttribute("personel", temp);
-			logger.info("Displaying details for academic personnel with ID: " + id + " for update.");
 			return "update-personel";
 		}catch (Exception e) {
 			logger.error("Error in updatePersonelById: " + e.getMessage());

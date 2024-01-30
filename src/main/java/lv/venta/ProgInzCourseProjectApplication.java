@@ -29,14 +29,12 @@ import lv.venta.repos.IRepoComments;
 import lv.venta.repos.IRepoCourse;
 import lv.venta.repos.IRepoThesis;
 import lv.venta.repos.users.IRepoAcademicPersonel;
-import lv.venta.repos.users.IRepoPerson;
 import lv.venta.repos.users.IRepoStudent;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-import java.util.Locale;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 
@@ -70,7 +68,6 @@ public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 			IRepoCourse courseRep,
 			IRepoThesis thesisRep,
 			IRepoAcademicPersonel academicPersonelRep,
-			IRepoPerson personRep,
 			IRepoStudent studentRep,
 			IRepoComments commentsRep,
 			IRepoApplication applicationRep,
@@ -156,7 +153,6 @@ public class ProgInzCourseProjectApplication implements WebMvcConfigurer {
 					c1.addStudent(student2);
 					//=======SAVE===========
 					courseRep.save(c1);
-					//courseRep.save(c2);
 					//======================
 
 

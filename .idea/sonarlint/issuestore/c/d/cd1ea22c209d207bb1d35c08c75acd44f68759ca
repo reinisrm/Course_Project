@@ -1,0 +1,21 @@
+
+f
+java:S1192A"KDefine a constant instead of duplicating this literal "error-page" 5 times.(ûÎô—ûÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ
+S
+java:S18547"8Remove this useless assignment to local variable "debt".(ÅÏÊúşÿÿÿÿ
+D
+java:S14817")Remove this unused "debt" local variable.(ÅÏÊúşÿÿÿÿ
+V
+java:S3457?"AFormat specifiers should be used instead of string concatenation.(Â¦â^
+W
+java:S3457M"AFormat specifiers should be used instead of string concatenation.(ñ„ß
+V
+java:S3457`"AFormat specifiers should be used instead of string concatenation.(Öµ"
+W
+java:S3457u"AFormat specifiers should be used instead of string concatenation.(Ÿ—Î
+]
+java:S3457"AFormat specifiers should be used instead of string concatenation.(÷İ±íıÿÿÿÿ

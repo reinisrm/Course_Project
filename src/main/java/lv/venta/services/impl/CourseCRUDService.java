@@ -43,7 +43,6 @@ public class CourseCRUDService implements ICourseCRUDService {
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 	}
@@ -73,7 +72,6 @@ public class CourseCRUDService implements ICourseCRUDService {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 	}
@@ -94,7 +92,6 @@ public class CourseCRUDService implements ICourseCRUDService {
 			}
 
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 	}
@@ -114,7 +111,7 @@ public class CourseCRUDService implements ICourseCRUDService {
 			return null;
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 
 		return null;
@@ -135,7 +132,6 @@ public class CourseCRUDService implements ICourseCRUDService {
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		
 		return null;
